@@ -1,26 +1,25 @@
 var TIME = document.getElementById("time");
 
-var Lengthen = (x, y) => {
-    x = x.toString();
-    let res = "";
-    for (let i = x.length; i < y; i++) {
-        res += "0";
+var Lengthen = (x) => {
+    if (x < 10) {
+        return "0" + x;
     }
-    res += x;
-    return res;
+    return x;
 };
 
-let x = new Date;
+var UpdateTime = () => {
+    let time = new Date;
+    
+    TIME.innerText = Lengthen(time.getHours()) + ":" + Lengthen(time.getMinutes()) + ":" + Lengthen(time.getSeconds());
+}
 
-TIME.innerText = Lengthen(x.getHours(), 2) + ":" + Lengthen(x.getMinutes(), 2) + ":" + Lengthen(x.getSeconds(), 2);
+let currentTime = new Date;
+
+UpdateTime();
 
 setTimeout(() => {
     setInterval(() => {
-        let time = new Date;
-    
-        TIME.innerText = Lengthen(time.getHours(), 2) + ":" + Lengthen(time.getMinutes(), 2) + ":" + Lengthen(time.getSeconds(), 2);
+        UpdateTime();
     }, 1000);
-    x = new Date;
-    TIME.innerText = Lengthen(x.getHours(), 2) + ":" + Lengthen(x.getMinutes(), 2) + ":" + Lengthen(x.getSeconds(), 2);
-
-}, 1000 - x.getMilliseconds());
+    UpdateTime();
+}, 1000 - currentTime.getMilliseconds());

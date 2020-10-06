@@ -9,65 +9,86 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <!-- <div class="topbar">
-        <nav>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> rickard rulle </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> rickard rulle </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"> rickard rulle </a>
-            <a href="https://store.steampowered.com"> ånga  </a>
-        </nav>
-    </div>
-     -->
     <div class="topbar">
        <ul>
-            <li id="triangle"></li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
-            <a href="https://store.steampowered.com" class="sacrifice"> <li> ånga </li> </a>
+            <li id="triangle" class="narrowGone"></li>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
+            <a href="https://store.steampowered.com" class="narrowGone"> <li> ånga </li> </a>
             <li id="triangle2"></li>
             {% if name %}
             <li id="name"> {{ name }} </li>
             {% else %}
             <li id="name"> yooooooooo hacker </li>
             {% endif %}
-            <li id="time"> 00:00:00 </li>
+            <li id="time" class="narrowGone"> 00:00:00 </li>
            
        </ul>
     </div>
 
-    <div class="mainContent">
-        <div class="box">
-            <div class="boxcontent">
-                snabbvy
+    <main>
+        <div class="boxcontainer">
+            <div class="box">
+                <h2>
+                    Schema
+                </h2>
+                <div class="boxcontent">
+
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div class="boxcontent">
-                snabbvy
+        <div class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Nyheter
+                </h2>
+                <div class="boxcontent">
+
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div class="boxcontent">
-                snabbvy
+        <div class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Nyheter
+                </h2>
+                <div class="boxcontent">
+
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div class="boxcontent">
-                snabbvy
+        <div class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Nyheter
+                </h2>
+                <div class="boxcontent">
+
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div class="boxcontent">
-                snabbvy
+        <div class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Nyheter
+                </h2>
+                <div class="boxcontent">
+
+                </div>
             </div>
         </div>
-        <div class="box">
-            <div class="boxcontent">
-                snabbvy
+        <div class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Nyheter
+                </h2>
+                <div class="boxcontent">
+
+                </div>
             </div>
         </div>   
-    </div>
+    </main>
 
     <div id="hiddenArrow">
         <div>

@@ -17,9 +17,9 @@ a:visited, a:hover, a:active, a {
   color: inherit;
 }
 
-li {
+.topbar ul li {
   display: inline;
-  background-color: #C0C0C0;
+  background-color: #D0D0D0;
   padding: 1.5em;
 }
 
@@ -30,7 +30,7 @@ li {
   top: -2.5em;
   width: 0;
   height: 0;
-  border-right: 4em solid #C0C0C0;
+  border-right: 4em solid #D0D0D0;
   border-bottom: 4em solid transparent;
 }
 
@@ -41,8 +41,8 @@ li {
   top: -2.5em;
   width: 0;
   height: 0;
-  border-right: 4em solid #b3b3b3;
-  border-bottom: 4em solid #C0C0C0;
+  border-right: 4em solid #c3c3c3;
+  border-bottom: 4em solid #D0D0D0;
 }
 
 ul {
@@ -50,26 +50,26 @@ ul {
   float: right;
 }
 
-a li:hover {
-  background-color: #a7a7a7;
+a:hover li {
+  background-color: #b7b7b7;
 }
 
 #time, #name {
-  background-color: #b3b3b3;
+  background-color: #c3c3c3;
 }
 
-/* 
+/*
 nav a:hover {
     background-color: #DD0000;
 } */
-.mainContent {
+main {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
 }
 
-.mainContent div {
+main div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -77,21 +77,32 @@ nav a:hover {
       justify-content: space-around;
 }
 
-.box {
+.boxcontainer {
   margin: 2em 0;
-  min-height: 300px;
+  min-height: 250px;
+}
+
+.box {
+  display: block;
+  height: calc(50vh - 8em);
+  background-color: #BBDDFF;
+  width: calc(100% - 6em);
+  max-width: 325px;
+  padding: 1em;
+  border-radius: 2em;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  min-height: 250px;
+}
+
+.box h2 {
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 .boxcontent {
-  height: calc(50vh - 8em);
-  background-color: #c8c8c8;
-  width: calc(100% - 6em);
-  max-width: 350px;
-  padding: 1em;
-  border-radius: 2em;
-  -webkit-box-shadow: 0 0 10px #D0D0D0;
-          box-shadow: 0 0 10px #D0D0D0;
-  min-height: 300px;
+  width: 100%;
+  height: 100%;
 }
 
 #hiddenArrow {
@@ -111,7 +122,7 @@ nav a:hover {
 }
 
 @media (max-width: 1000px) {
-  .mainContent {
+  main {
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
   }
@@ -120,21 +131,30 @@ nav a:hover {
     display: -ms-flexbox;
     display: flex;
   }
+  .topbar ul li.narrowGone, .narrowGone {
+    display: none;
+  }
+  .topbar ul #time {
+    display: inline;
+  }
+  #triangle2 {
+    border-bottom: 4em solid transparent;
+  }
 }
 
 @media (max-width: 750px) {
-  .mainContent {
+  main {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-  }
-  .sacrifice {
-    display: none;
   }
 }
 
 @media (max-width: 600px) {
   nav a {
     padding: 2em 1em;
+  }
+  .topbar ul #time {
+    display: none;
   }
 }
 /*# sourceMappingURL=style.css.map */
