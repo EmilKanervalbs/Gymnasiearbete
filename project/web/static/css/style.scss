@@ -1,0 +1,140 @@
+$navbar-color: #C0C0C0;
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    // background-image: linear-gradient(to bottom right, #0088FF, #0077DD);
+    background-image: linear-gradient(to bottom right, #E0E0E0, #F8F8F8);
+    // background-image: linear-gradient(to bottom right, #E0E0E0, #F8F8F8);
+
+    height: 100%;
+    width: 100%;
+}
+
+.topbar {
+    width: 100%;
+    height: 4em;
+}
+
+a:visited, a:hover, a:active, a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.topbar li {
+    display: inline;
+    background-color: $navbar-color;
+    padding: 1.5em ;
+}
+
+#triangle {
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+    top: -2.5em;
+    width: 0;
+    height: 0;
+    border-right: 4em solid $navbar-color;
+    border-bottom: 4em solid transparent;
+}
+
+#triangle2 {
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+    top: -2.5em;
+    width: 0;
+    height: 0;
+    border-right: 4em solid darken($navbar-color, 5);
+    border-bottom: 4em solid $navbar-color;
+}
+
+ul {
+    // position: absolute;
+    margin-top: 1.5em;
+    // top: 1.5em;
+    float: right;
+    // right: 0;
+
+}
+
+a li:hover {
+    background-color: darken($navbar-color, 10);
+}
+
+#time, #name {
+    background-color: darken($navbar-color, 5);
+}
+
+/* 
+nav a:hover {
+    background-color: #DD0000;
+} */
+
+.mainContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    div {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.box {
+    margin: 2em 0;
+    min-height: 300px;
+}
+
+.boxcontent {
+    height: calc(50vh - 8em);
+    // background-color: rgb(40, 40, 220);
+    background-color: rgb(200, 200, 200);
+    width: calc(100% - 6em);
+    max-width: 350px;
+    padding: 1em;
+    border-radius: 2em;
+    box-shadow: 0 0 10px #D0D0D0;
+    min-height: 300px;
+}
+
+#hiddenArrow {
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    justify-content: center;
+    align-content: center;
+    background-color: #636167;
+    border-radius: 1em;
+
+    display: none;
+}  
+
+@media (max-width: 1000px) {
+    .mainContent {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #hiddenArrow {
+        display: flex;
+    }  
+}
+
+@media (max-width: 750px) {
+    .mainContent {
+        grid-template-columns: 1fr;
+    }
+
+    .sacrifice {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+    nav a {
+        padding: 2em 1em;
+    }
+}

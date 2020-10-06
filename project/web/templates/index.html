@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Dokument </title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <!-- <div class="topbar">
@@ -20,12 +20,18 @@
      -->
     <div class="topbar">
        <ul>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
-        <a href="https://store.steampowered.com" class="sacrifice"> <li> ånga </li> </a>
-        <li> namn namn namn </li>
-        <li> tid </li>
+            <li id="triangle"></li>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="sacrifice"> <li> rickard rulle </li> </a>
+            <a href="https://store.steampowered.com" class="sacrifice"> <li> ånga </li> </a>
+            <li id="triangle2"></li>
+            {% if name %}
+            <li id="name"> {{ name }} </li>
+            {% else %}
+            <li id="name"> yooooooooo hacker </li>
+            {% endif %}
+            <li id="time"> 00:00:00 </li>
            
        </ul>
     </div>
@@ -68,5 +74,7 @@
             mer innehåll
         </div>
     </div>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
