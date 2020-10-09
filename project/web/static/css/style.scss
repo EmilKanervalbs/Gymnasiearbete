@@ -1,13 +1,16 @@
-$navbar-color: #D0D0D0;
+// $background-gradient: linear-gradient(to bottom right, #E0E0E0, #F8F8F8);
+$background-gradient: linear-gradient(to top left, #BBDDEE, #BBDDFF);
 
-$box-color: #BBDDFF;
+$navbar-color: #F8F8F8; //#D0D0D0
+
+$box-color: #FFFFFF; //#BBDDFF
+
+$fs: 14px; //standard font size
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
-    // background-image: linear-gradient(to bottom right, #0088FF, #0077DD);
-    background-image: linear-gradient(to bottom right, #E0E0E0, #F8F8F8);
-    // background-image: linear-gradient(to bottom right, #E0E0E0, #F8F8F8);
+    background-image: $background-gradient;
 
     height: 100%;
     width: 100%;
@@ -16,18 +19,16 @@ body {
 .topbar {
     width: 100%;
     height: 4em;
+    ul li {
+        display: inline;
+        background-color: $navbar-color;
+        padding: 1.5em ;
+    }
 }
 
 a:visited, a:hover, a:active, a{
     text-decoration: none;
     color: inherit;
-}
-
-
-.topbar ul li {
-    display: inline;
-    background-color: $navbar-color;
-    padding: 1.5em ;
 }
 
 #triangle {
@@ -77,27 +78,27 @@ nav a:hover {
 main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    div {
+    section {
         display: flex;
         justify-content: space-around;
     }
 }
 
 .boxcontainer {
-    margin: 2em 0;
+    margin: 28px 0;
     min-height: 250px;
 }
 
 .box {
     display: block;
-    height: calc(50vh - 8em);
+    height: calc(50vh - 8 * 14px - 8px);
     // background-color: rgb(40, 40, 220);
     // background-color: rgb(200, 200, 200);
     background-color: $box-color;
-    width: calc(100% - 6em);
+    width: calc(100% - 6 * 14px);
     max-width: 325px;
-    padding: 1em;
-    border-radius: 2em;
+    padding: 14px;
+    border-radius: 2 * 14px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     min-height: 250px;
 
@@ -109,7 +110,41 @@ main {
 
 .boxcontent {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 3rem);
+    margin: 1rem 0;
+    overflow: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+
+}
+
+table.newstable {
+    margin-top: 5px;
+
+    tbody {
+        tr {
+            th, td {
+            display: block;
+            text-align: left;
+            }
+
+            th {
+                font-weight: bold;
+                margin-bottom: 2px;
+                font-size: 1.1em;
+            }
+
+            td {
+                padding-bottom: 0.2rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+                margin-bottom: 0.2rem;    
+            }
+        }
+        // &:first-child :first-child {
+        //     border-top: 1px solid rgba(0, 0, 0, 0.5);
+        //     padding-top: 0.2rem;
+        // }
+        
+    }
 }
 
 #hiddenArrow {
@@ -147,6 +182,11 @@ main {
         border-bottom: 4em solid transparent;
     }
 
+    @media (min-height: 750px) {
+        body {
+            font-size: 18px;
+        }
+    }
 }
 
 @media (max-width: 750px) {

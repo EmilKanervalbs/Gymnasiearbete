@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="topbar">
+    <nav class="topbar">
        <ul>
             <li id="triangle" class="narrowGone"></li>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
@@ -25,10 +25,10 @@
             <li id="time" class="narrowGone"> 00:00:00 </li>
            
        </ul>
-    </div>
+    </nav>
 
     <main>
-        <div class="boxcontainer">
+        <section class="boxcontainer">
             <div class="box">
                 <h2>
                     Schema
@@ -37,8 +37,35 @@
 
                 </div>
             </div>
-        </div>
-        <div class="boxcontainer">
+        </section>
+        <section class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Nyheter
+                </h2>
+                <div class="boxcontent">
+                    <table class="newstable">
+                        <tr>
+                            <th>
+                                Nyhetstitel
+                            </th>
+                            <td>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, nisi!
+                            </td>    
+                        </tr>
+                        <tr>
+                            <th>
+                                Nyhetstitel
+                            </th>
+                            <td>
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fugiat.
+                            </td>    
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
                     Nyheter
@@ -47,8 +74,8 @@
 
                 </div>
             </div>
-        </div>
-        <div class="boxcontainer">
+        </section>
+        <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
                     Nyheter
@@ -57,8 +84,8 @@
 
                 </div>
             </div>
-        </div>
-        <div class="boxcontainer">
+        </section>
+        <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
                     Nyheter
@@ -67,8 +94,8 @@
 
                 </div>
             </div>
-        </div>
-        <div class="boxcontainer">
+        </section>
+        <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
                     Nyheter
@@ -77,17 +104,7 @@
 
                 </div>
             </div>
-        </div>
-        <div class="boxcontainer">
-            <div class="box">
-                <h2 class="boxtitle">
-                    Nyheter
-                </h2>
-                <div class="boxcontent">
-
-                </div>
-            </div>
-        </div>   
+        </section>   
     </main>
 
     <div id="hiddenArrow">
