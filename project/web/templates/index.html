@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
     <nav class="topbar">
-       <ul>
+        <ul>
             <li id="triangle" class="narrowGone"></li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone"> <li> rickard rulle </li> </a>
-            <a href="https://store.steampowered.com" class="narrowGone"> <li> ånga </li> </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone">
+                <li> rickard rulle </li>
+            </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone">
+                <li> rickard rulle </li>
+            </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone">
+                <li> rickard rulle </li>
+            </a>
+            <a href="https://store.steampowered.com" class="narrowGone">
+                <li> ånga </li>
+            </a>
             <li id="triangle2"></li>
             {% if name %}
             <li id="name"> {{ name }} </li>
@@ -23,8 +33,8 @@
             <li id="name"> yooooooooo hacker </li>
             {% endif %}
             <li id="time" class="narrowGone"> 00:00:00 </li>
-           
-       </ul>
+
+        </ul>
     </nav>
 
     <main>
@@ -33,17 +43,20 @@
                 <h2>
                     Schema
                 </h2>
-                <div class="boxcontent">
+                <div class="boxcontent schema">
+                    <table class="newstable">
+                        <h3> Nästa lektion </h3>
+                        <tr>
+                            <th>
+                                Nyhetstitel
+                            </th>
+                            <td>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, nisi!
+                            </td>
+                        </tr>
+                    </table>
 
-                </div>
-            </div>
-        </section>
-        <section class="boxcontainer">
-            <div class="box">
-                <h2 class="boxtitle">
-                    Nyheter
-                </h2>
-                <div class="boxcontent">
+                    <h3> yes </h3>
                     <table class="newstable">
                         <tr>
                             <th>
@@ -51,15 +64,7 @@
                             </th>
                             <td>
                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, nisi!
-                            </td>    
-                        </tr>
-                        <tr>
-                            <th>
-                                Nyhetstitel
-                            </th>
-                            <td>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fugiat.
-                            </td>    
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -71,14 +76,49 @@
                     Nyheter
                 </h2>
                 <div class="boxcontent">
-
+                    <table class="newstable">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Nyhetstitel
+                                </th>
+                                <td>
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, nisi!
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Nyhetstitel
+                                </th>
+                                <td>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fugiat.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Nyhetstitel
+                                </th>
+                                <td>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fugiat.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Nyhetstitel
+                                </th>
+                                <td>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fugiat.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
         <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
-                    Nyheter
+                    Profil
                 </h2>
                 <div class="boxcontent">
 
@@ -88,7 +128,7 @@
         <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
-                    Nyheter
+                    Uppgifter
                 </h2>
                 <div class="boxcontent">
 
@@ -98,13 +138,23 @@
         <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
-                    Nyheter
+                    Prov
                 </h2>
                 <div class="boxcontent">
 
                 </div>
             </div>
-        </section>   
+        </section>
+        <section class="boxcontainer">
+            <div class="box">
+                <h2 class="boxtitle">
+                    Resultat
+                </h2>
+                <div class="boxcontent">
+
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="hiddenArrow">
@@ -115,4 +165,5 @@
 
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
+
 </html>
