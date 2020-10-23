@@ -14,7 +14,7 @@ body {
 
 .topbar ul li {
   display: inline;
-  background-color: #F8F8F8;
+  background-color: #F8F8FA;
   padding: 1.5em;
 }
 
@@ -30,7 +30,7 @@ a:visited, a:hover, a:active, a {
   top: -2.5em;
   width: 0;
   height: 0;
-  border-right: 4em solid #F8F8F8;
+  border-right: 4em solid #F8F8FA;
   border-bottom: 4em solid transparent;
 }
 
@@ -41,8 +41,8 @@ a:visited, a:hover, a:active, a {
   top: -2.5em;
   width: 0;
   height: 0;
-  border-right: 4em solid #ebebeb;
-  border-bottom: 4em solid #F8F8F8;
+  border-right: 4em solid #e9e9ef;
+  border-bottom: 4em solid #F8F8FA;
 }
 
 ul {
@@ -51,11 +51,13 @@ ul {
 }
 
 a:hover li {
-  background-color: #dfdfdf;
+  -webkit-transition: background-color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out;
+  background-color: #dadae5;
 }
 
 #time, #name {
-  background-color: #ebebeb;
+  background-color: #e9e9ef;
 }
 
 /*
@@ -176,6 +178,67 @@ table.newstable tbody tr:nth-child(2n) th, table.newstable tbody tr:nth-child(2n
 
 table.newstable tbody tr:nth-child(2n + 1) th, table.newstable tbody tr:nth-child(2n + 1) td {
   background-color: #F8F8F8;
+}
+
+.box2 {
+  display: block;
+  height: calc(50vh - 8 * 14px - 8px);
+  background-color: #FFFFFF;
+  width: calc(100% - 6 * 14px);
+  max-width: 353px;
+  padding: 14px 0;
+  border-radius: 21px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  min-height: 250px;
+}
+
+.box2 h2 {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.boxcontent2 {
+  width: 100%;
+  height: calc(100% - 2.5rem);
+  margin-top: 0.5rem;
+  overflow: auto;
+}
+
+.boxcontent2.schema h3 {
+  margin-top: 10px;
+  font-size: 1rem;
+  padding-left: 5px;
+  padding-bottom: 3px;
+}
+
+.boxcontent2.schema h3:first-child {
+  margin-top: 3px;
+}
+
+div.newslist div {
+  margin: 0.5rem 1rem;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 4px;
+}
+
+div.newslist div:nth-child(2n +1) {
+  background-color: #FDFDFD;
+}
+
+div.newslist div:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+div.newslist div h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+div.newslist div p {
+  font-size: 0.9rem;
 }
 
 #hiddenArrow {
