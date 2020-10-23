@@ -14,7 +14,7 @@ body {
 
 .topbar ul li {
   display: inline;
-  background-color: #F8F8FA;
+  background-color: #F8F8F8;
   padding: 1.5em;
 }
 
@@ -30,7 +30,7 @@ a:visited, a:hover, a:active, a {
   top: -2.5em;
   width: 0;
   height: 0;
-  border-right: 4em solid #F8F8FA;
+  border-right: 4em solid #F8F8F8;
   border-bottom: 4em solid transparent;
 }
 
@@ -41,8 +41,8 @@ a:visited, a:hover, a:active, a {
   top: -2.5em;
   width: 0;
   height: 0;
-  border-right: 4em solid #e9e9ef;
-  border-bottom: 4em solid #F8F8FA;
+  border-right: 4em solid #ebebeb;
+  border-bottom: 4em solid #F8F8F8;
 }
 
 ul {
@@ -53,11 +53,11 @@ ul {
 a:hover li {
   -webkit-transition: background-color 100ms ease-in-out;
   transition: background-color 100ms ease-in-out;
-  background-color: #dadae5;
+  background-color: #dfdfdf;
 }
 
 #time, #name {
-  background-color: #e9e9ef;
+  background-color: #ebebeb;
 }
 
 /*
@@ -104,8 +104,8 @@ main section {
 
 .boxcontent {
   width: 100%;
-  height: calc(100% - 2.5rem);
-  margin: 1rem 0;
+  height: calc(100% - 2rem);
+  margin: 1rem 0 0;
   margin-top: 0.5rem;
   overflow: auto;
 }
@@ -180,6 +180,29 @@ table.newstable tbody tr:nth-child(2n + 1) th, table.newstable tbody tr:nth-chil
   background-color: #F8F8F8;
 }
 
+.box-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+  position: relative;
+  bottom: .9rem;
+}
+
+.box-bottom a {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: white;
+  padding: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  font-size: 1rem;
+  color: #6464c8;
+}
+
 .box2 {
   display: block;
   height: calc(50vh - 8 * 14px - 8px);
@@ -224,6 +247,24 @@ div.newslist div {
   padding: 4px;
 }
 
+div.newslist div div {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+div.newslist div div.list-item-content div.list-item-content-row {
+  padding-top: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 div.newslist div:nth-child(2n +1) {
   background-color: #FDFDFD;
 }
@@ -233,12 +274,12 @@ div.newslist div:nth-child(2n) {
 }
 
 div.newslist div h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 
-div.newslist div p {
-  font-size: 0.9rem;
+div.uppgifter h3 {
+  padding-left: 1.25rem;
 }
 
 #hiddenArrow {

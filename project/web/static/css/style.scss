@@ -1,7 +1,7 @@
 // $background-gradient: linear-gradient(to bottom right, #E0E0E0, #F8F8F8);
 $background-gradient: linear-gradient(to top left, #BBDDEE, #BBDDFF);
 
-$navbar-color: #F8F8FA; //#D0D0D0
+$navbar-color: #F8F8F8; //#D0D0D0
 
 $box-color: #FFFFFF; //#BBDDFF
 
@@ -111,8 +111,8 @@ main {
 
 .boxcontent {
     width: 100%;
-    height: calc(100% - 2.5rem);
-    margin: 1rem 0;
+    height: calc(100% - 2rem);
+    margin: 1rem 0 0;
     margin-top: 0.5rem;
     overflow: auto;
     // border-top: 1px solid rgba(0, 0, 0, 0.5);
@@ -205,6 +205,24 @@ table.newstable {
     }
 }
 
+.box-bottom {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    position: relative;
+    bottom: .9rem;
+    a {
+        width: fit-content;
+        background-color: white;
+        padding: 0.5rem;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        font-size: 1rem;
+        color: rgb(100, 100, 200);
+
+
+    }
+}
 
 .box2 {
     display: block;
@@ -254,7 +272,20 @@ div.newslist {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         border-radius: 4px;
         padding: 4px;
+        div {
+            box-shadow: none;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+        }
 
+        div.list-item-content {
+            div.list-item-content-row {
+                padding-top: 4px;
+                display: flex;
+                justify-content: space-between;    
+            }
+        }
         &:nth-child(2n +1) {
             background-color: #FDFDFD;
         }
@@ -263,12 +294,15 @@ div.newslist {
         background-color: #F8F8F8;
         }
         h4 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
-        p {
-            font-size: 0.9rem;
-        }
+    }
+}
+
+div.uppgifter {
+    h3 {
+        padding-left: 1.25rem;
     }
 }
 
