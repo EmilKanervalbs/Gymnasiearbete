@@ -260,8 +260,8 @@ table.newstable {
         h3 {
             margin-top: 10px;
             font-size: 1rem;
-            padding-left: 5px + 14px;
-            // padding-bottom: 3px;
+            padding-left: 5px;
+            padding-bottom: 3px;
 
             &:first-child {
                 margin-top: 3px;
@@ -304,18 +304,12 @@ div.newslist, div.assignment-list {
             font-weight: bold;
             padding-bottom: 3px;
         }
-
-        p {
-            font-size: 0.85rem;
-        }
     }
 }
 
 div.uppgifter {
     h3 {
         padding-left: 1.25rem;
-        font-size: 1rem;
-
     }
 }
 

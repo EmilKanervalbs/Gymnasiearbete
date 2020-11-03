@@ -1,8 +1,8 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
-  background-image: -webkit-gradient(linear, right bottom, left top, from(#BBDDEE), to(#BBDDFF));
-  background-image: linear-gradient(to top left, #BBDDEE, #BBDDFF);
+  background-image: -webkit-gradient(linear, right bottom, left top, from(#8fd1f1), to(#63a9ee));
+  background-image: linear-gradient(to top left, #8fd1f1, #63a9ee);
   height: 100%;
   width: 100%;
 }
@@ -86,7 +86,7 @@ main section {
 
 .box {
   display: block;
-  height: calc(50vh - 8 * 14px - 8px);
+  height: calc(50vh - 8 * 14px);
   background-color: #FFFFFF;
   width: calc(100% - 6 * 14px);
   max-width: 325px;
@@ -205,7 +205,7 @@ table.newstable tbody tr:nth-child(2n + 1) th, table.newstable tbody tr:nth-chil
 
 .box2 {
   display: block;
-  height: calc(50vh - 8 * 14px - 8px);
+  height: calc(50vh - 8 * 14px);
   background-color: #FFFFFF;
   width: calc(100% - 6 * 14px);
   max-width: 353px;
@@ -231,23 +231,30 @@ table.newstable tbody tr:nth-child(2n + 1) th, table.newstable tbody tr:nth-chil
 .boxcontent2.schema h3 {
   margin-top: 10px;
   font-size: 1rem;
-  padding-left: 5px;
-  padding-bottom: 3px;
+  padding-left: 19px;
 }
 
 .boxcontent2.schema h3:first-child {
   margin-top: 3px;
 }
 
-div.newslist div {
+div.newslist div, div.assignment-list div {
   margin: 0.5rem 1rem;
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
-  padding: 4px;
+  padding: 6px;
+  /* 
+        &:nth-child(2n +1) {
+            background-color: #FDFDFD;
+        }
+
+        &:nth-child(2n) {
+        background-color: #F8F8F8;
+        } */
 }
 
-div.newslist div div {
+div.newslist div div, div.assignment-list div div {
   -webkit-box-shadow: none;
           box-shadow: none;
   margin: 0;
@@ -255,7 +262,7 @@ div.newslist div div {
   padding: 0;
 }
 
-div.newslist div div.list-item-content div.list-item-content-row {
+div.newslist div div.list-item-content div.list-item-content-row, div.assignment-list div div.list-item-content div.list-item-content-row {
   padding-top: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -265,21 +272,19 @@ div.newslist div div.list-item-content div.list-item-content-row {
           justify-content: space-between;
 }
 
-div.newslist div:nth-child(2n +1) {
-  background-color: #FDFDFD;
-}
-
-div.newslist div:nth-child(2n) {
-  background-color: #F8F8F8;
-}
-
-div.newslist div h4 {
-  font-size: 1.1rem;
+div.newslist div h4, div.assignment-list div h4 {
+  font-size: 1rem;
   font-weight: bold;
+  padding-bottom: 3px;
+}
+
+div.newslist div p, div.assignment-list div p {
+  font-size: 0.85rem;
 }
 
 div.uppgifter h3 {
   padding-left: 1.25rem;
+  font-size: 1rem;
 }
 
 #hiddenArrow {
