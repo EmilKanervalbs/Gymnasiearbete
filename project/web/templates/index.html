@@ -13,7 +13,7 @@
 <body>
     <nav class="topbar">
         <ul>
-            <li id="triangle" class="narrowGone"></li>
+            <li id="triangle" class="narrowGone triangle"></li>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="narrowGone">
                 <li> rickard rulle </li>
             </a>
@@ -26,12 +26,27 @@
             <a href="https://store.steampowered.com" class="narrowGone">
                 <li> ånga </li>
             </a>
-            <li id="triangle2"></li>
-            {% if name %}
-            <li id="name"> {{ name }} </li>
-            {% else %}
-            <li id="name"> yooooooooo hacker </li>
-            {% endif %}
+            <li id="triangle2" class="triangle"></li>
+            
+            <li id="name"> 
+                {% if name %}
+                {{ name }}
+                {% else %}
+                yooooooooo hacker
+                {% endif %}
+                <ul class="dropbar">
+                    <a href="/profile">
+                        <li>
+                            Profil
+                        </li>
+                    </a>
+                    <a href="/logout">
+                        <li>
+                            Logga ut
+                        </li>
+                    </a>
+                </ul>
+            </li>
             <li id="time" class="narrowGone"> 00:00:00 </li>
 
         </ul>
@@ -139,7 +154,7 @@
 
                 </div>
             </div>
-        </section>
+        </section>  
 
         <section class="boxcontainer">
             <div class="box">
@@ -170,7 +185,7 @@
                         </tr>
                     </table>
 
-                    <h3> yes </h3>
+                    <h3> Uppkommande </h3>
                     <table class="newstable">
                         <tr>
                             <th>
@@ -190,8 +205,51 @@
                 <h2 class="boxtitle">
                     Prov
                 </h2>
-                <div class="boxcontent">
+                <div class="boxcontent schema">
+                    <table class="newstable">
+                        <h3> Den här veckan </h3>
+                        <tr>
+                            <th>
+                                Prov - Kapitel 3 och 4
+                            </th>
+                            <td>
+                                <div>
+                                    Fysik 2
+                                </div>
+                                <div>
+                                    23/10/2020
+                                </div>
+                            </td>
 
+                            <td>
+                                <div>
+                                    Prov
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h3> Uppkommande </h3>
+                    <table class="newstable">
+                        <tr>
+                            <th>
+                                Kapitel 5 och 6
+                            </th>
+                            <td>
+                               <div>
+                                    Fysik 2
+                               </div> 
+                               <div>
+                                    24/12/2020
+                               </div>
+                            </td>
+                            <td>
+                                <div>
+                                    Prov
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
@@ -201,6 +259,28 @@
                     Resultat
                 </h2>
                 <div class="boxcontent">
+                    <table class="newstable">
+                        <tr>
+                            <th>
+                                Prov kapitel 1 och 2
+                            </th>
+                            <td>
+                                <div>
+                                    Fysik 2
+
+                                </div>
+                                <div>
+                                    01/11/2020
+                                </div>
+                            </td>
+
+                            <td>
+                                <div>
+                                    Prov
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
 
                 </div>
             </div>
