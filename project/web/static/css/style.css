@@ -48,8 +48,8 @@ body {
 .topbar ul li:hover ul.dropbar a:nth-child(1) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 350ms;
-          animation-duration: 350ms;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
   -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
@@ -61,8 +61,8 @@ body {
 .topbar ul li:hover ul.dropbar a:nth-child(2) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 350ms;
-          animation-duration: 350ms;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
   -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
@@ -74,8 +74,8 @@ body {
 .topbar ul li:hover ul.dropbar a:nth-child(3) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 350ms;
-          animation-duration: 350ms;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
   -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
@@ -87,8 +87,8 @@ body {
 .topbar ul li:hover ul.dropbar a:nth-child(4) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 350ms;
-          animation-duration: 350ms;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
   -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
@@ -100,8 +100,8 @@ body {
 .topbar ul li:hover ul.dropbar a:nth-child(5) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 350ms;
-          animation-duration: 350ms;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
   -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
@@ -113,8 +113,8 @@ body {
 .topbar ul li:hover ul.dropbar a:nth-child(6) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 350ms;
-          animation-duration: 350ms;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
   -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
@@ -124,11 +124,7 @@ body {
 }
 
 .topbar ul li:hover ul.dropbar li:hover {
-  background-color: #dfdfdf;
-}
-
-.topbar ul li:hover ul.dropbar a:last-child li {
-  border-radius: 0 0 5px 5px;
+  background-color: #d2d2d2;
 }
 
 .topbar ul li ul.dropbar {
@@ -139,12 +135,16 @@ body {
   display: none;
 }
 
-.topbar ul li ul.dropbar li {
-  background-color: #ebebeb;
+.topbar ul li ul.dropbar a {
+  margin-top: 0.5rem;
 }
 
 .topbar ul li ul.dropbar a li {
   width: calc(100% - 54px);
+  background-color: #dfdfdf;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
+          box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
 }
 
 .topbar a:hover li {
@@ -155,8 +155,8 @@ body {
 
 @-webkit-keyframes dropdown-menu-fade-in {
   0% {
-    -webkit-transform: translate(-5rem, 0);
-            transform: translate(-5rem, 0);
+    -webkit-transform: translate(0, -2rem);
+            transform: translate(0, -2rem);
     opacity: 0;
   }
   100% {
@@ -166,8 +166,8 @@ body {
 
 @keyframes dropdown-menu-fade-in {
   0% {
-    -webkit-transform: translate(-5rem, 0);
-            transform: translate(-5rem, 0);
+    -webkit-transform: translate(0, -2rem);
+            transform: translate(0, -2rem);
     opacity: 0;
   }
   100% {
