@@ -29,8 +29,8 @@
             <li id="triangle2" class="triangle"></li>
             
             <li id="name"> 
-                {% if name %}
-                {{ name }}
+                {% if user %}
+                {{ user["firstName"] + " " + user["lastName"] }}
                 {% else %}
                 yooooooooo hacker
                 {% endif %}

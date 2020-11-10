@@ -4,7 +4,16 @@ app = Flask(__name__, static_folder="web/static", static_url_path="", template_f
 
 class Server():
     def __init__(self):
+        testUser = {
+            "name":"BajsMannen",
+            "firstName":"Bajs",
+            "lastName":"Mannen"
+        }
         self.userSessions = []
+        self.users = []
+        self.users.append(testUser)
+
+server = Server()
 
 @app.route("/")
 def index():
@@ -12,7 +21,7 @@ def index():
 
 @app.route("/startpage")
 def startpage():
-    return render_template("startsida.html")
+    return render_template("startsida.html", user=server.users[0])
 
 @app.route("/schedule")
 def schedule():

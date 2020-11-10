@@ -25,6 +25,14 @@ body {
   height: 1em;
 }
 
+.topbar ul li#name {
+  min-width: 15ch;
+}
+
+.topbar ul li#time {
+  padding-left: 0;
+}
+
 .topbar ul li.triangle {
   position: relative;
   background-color: transparent;
@@ -67,8 +75,8 @@ body {
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-delay: 200ms;
-          animation-delay: 200ms;
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
 }
 
 .topbar ul li:hover ul.dropbar a:nth-child(3) li {
@@ -80,11 +88,24 @@ body {
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-delay: 400ms;
-          animation-delay: 400ms;
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
 }
 
 .topbar ul li:hover ul.dropbar a:nth-child(4) li {
+  -webkit-animation-name: dropdown-menu-fade-in;
+          animation-name: dropdown-menu-fade-in;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
+  -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
+          animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 450ms;
+          animation-delay: 450ms;
+}
+
+.topbar ul li:hover ul.dropbar a:nth-child(5) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -97,19 +118,6 @@ body {
           animation-delay: 600ms;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(5) li {
-  -webkit-animation-name: dropdown-menu-fade-in;
-          animation-name: dropdown-menu-fade-in;
-  -webkit-animation-duration: 300ms;
-          animation-duration: 300ms;
-  -webkit-animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
-          animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-delay: 800ms;
-          animation-delay: 800ms;
-}
-
 .topbar ul li:hover ul.dropbar a:nth-child(6) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
@@ -119,8 +127,8 @@ body {
           animation-timing-function: cubic-bezier(0.2, 0.9, 0.5, 1);
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-delay: 1000ms;
-          animation-delay: 1000ms;
+  -webkit-animation-delay: 750ms;
+          animation-delay: 750ms;
 }
 
 .topbar ul li:hover ul.dropbar li:hover {
@@ -155,8 +163,8 @@ body {
 
 @-webkit-keyframes dropdown-menu-fade-in {
   0% {
-    -webkit-transform: translate(0, -2rem);
-            transform: translate(0, -2rem);
+    -webkit-transform: translate(0, -1.5rem);
+            transform: translate(0, -1.5rem);
     opacity: 0;
   }
   100% {
@@ -166,8 +174,8 @@ body {
 
 @keyframes dropdown-menu-fade-in {
   0% {
-    -webkit-transform: translate(0, -2rem);
-            transform: translate(0, -2rem);
+    -webkit-transform: translate(0, -1.5rem);
+            transform: translate(0, -1.5rem);
     opacity: 0;
   }
   100% {
