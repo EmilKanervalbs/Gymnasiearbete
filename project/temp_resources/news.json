@@ -19,7 +19,7 @@
         {
             "title":"ska inte finnas",
             "content":"bajs bajs bajs bajsmannen suger",
-            "classes":[],
+            "classes":["test2"],
             "category":"",
             "startDate":"0",
             "endDate":"0"

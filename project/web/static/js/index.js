@@ -34,6 +34,8 @@ var getNews = async () => {
     let x = await fetch("/getnews/")
         .then((resp) => {
             console.log("response recieved");
+            console.log(resp);
+
             return resp.json();
     })
         .then((news) => {
@@ -63,3 +65,4 @@ var getNews = async () => {
 
 
 getNews();
+

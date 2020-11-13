@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, make_response, request
 
 import json
 
@@ -12,9 +12,9 @@ class Server():
             "lastName":"Mannen",
             "class":"test"
         }
-        self.userSessions = []
         self.users = []
         self.users.append(testUser)
+        self.userSessions = {"helo_wrold": self.users[0]}
 
         with open("temp_resources/news.json", "r") as zzz:
             test = zzz.read()
@@ -29,7 +29,10 @@ print(str(server.news)) # big problemo
 
 @app.route("/")
 def index():
-    return redirect("/startpage")
+    resp = make_response(redirect("/startpage"))
+    resp.set_cookie("session", "helo_wrold")
+    server.userSessions["helo_wrold"] = server.users[0]
+    return resp # gör så att cookies skapas här
 
 @app.route("/startpage")
 def startpage():
@@ -52,7 +55,41 @@ def assignments():
 
 # content managaging saker
 
-@app.route("/getnews/")
-@app.route("/getnews/<newsID>")
+@app.route("/getnews/", methods=["GET"])
+@app.route("/getnews/<newsID>", methods=["GET"])
 def getnews(newsID=None):
-    return server.news
+
+    print(request.cookies.get("session"))
+
+    print(server.userSessions)
+
+    print(request.cookies.get("session") in server.userSessions)
+
+    user = None
+
+    if request.cookies.get("session") in server.userSessions:
+        print("------------------------------------cunt")
+        user = server.userSessions[request.cookies.get("session")]
+        
+        group = user["class"]
+
+        print(user["class"])
+
+        # for news in server.news["news"]:
+            
+            # print("--x--",news)
+
+        deliveryNews = {"news":[]}
+
+        for news in server.news["news"]:
+            # print("------------------------",str(news["classes"]))
+            if len(deliveryNews) > 5:
+                break
+            elif group not in news["classes"]:
+                continue
+            else: 
+                deliveryNews["news"].append(news)
+
+        return deliveryNews
+    print("---------------------------------nope")
+    return '{"news":["bajs"]}'
