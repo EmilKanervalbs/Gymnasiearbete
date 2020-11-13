@@ -1,5 +1,7 @@
 from flask import Flask, render_template, redirect
 
+import json
+
 app = Flask(__name__, static_folder="web/static", static_url_path="", template_folder="web/templates")
 
 class Server():
@@ -7,13 +9,23 @@ class Server():
         testUser = {
             "name":"BajsMannen",
             "firstName":"Bajs",
-            "lastName":"Mannen"
+            "lastName":"Mannen",
+            "class":"test"
         }
         self.userSessions = []
         self.users = []
         self.users.append(testUser)
 
+        with open("temp_resources/news.json", "r") as zzz:
+            test = zzz.read()
+
+        self.news = json.loads(test)
+
+
 server = Server()
+
+print(str(server.news)) # big problemo
+
 
 @app.route("/")
 def index():
@@ -35,3 +47,12 @@ def news():
 def assignments():
     return "yeah no"
     #sdsdddddddsdddsds
+
+
+
+# content managaging saker
+
+@app.route("/getnews/")
+@app.route("/getnews/<newsID>")
+def getnews(newsID=None):
+    return server.news

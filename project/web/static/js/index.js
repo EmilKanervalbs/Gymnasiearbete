@@ -25,3 +25,41 @@ setTimeout(() => {
 }, 1000 - currentTime.getMilliseconds());
 
 
+
+let x = document.getElementById("news")
+console.log(x)
+
+var getNews = async () => {
+    console.log("requesting news");
+    let x = await fetch("/getnews/")
+        .then((resp) => {
+            console.log("response recieved");
+            return resp.json();
+    })
+        .then((news) => {
+            console.log(news);
+            return news
+    });
+
+    const newsElement = document.getElementById("news").querySelector("tbody")
+    
+    console.log(x["news"]);
+    x["news"].forEach(a => {
+        console.log(a);
+        let title = a.title;
+        let content = a.content;
+        let TR = document.createElement("tr");
+        let TH = document.createElement("th");
+        TH.innerText = title;
+        TR.appendChild(TH);
+
+        let TD = document.createElement("td");
+        TD.innerText = content;
+        TR.appendChild(TD)
+
+        newsElement.appendChild(TR);
+    })
+}
+
+
+getNews();

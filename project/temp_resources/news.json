@@ -1,0 +1,28 @@
+{	
+    "news":[
+		{
+            "title":"test",
+            "content":"jodå det är ju ett test för att se om man kan läsa in json liksom cool",
+            "classes":["test"],
+            "category":"",
+            "startDate":"0",
+            "endDate":"0"
+        },
+        {
+            "title":"test",
+            "content":"uh oh stinky poop",
+            "classes":["test"],
+            "category":"",
+            "startDate":"0",
+            "endDate":"0"
+        },
+        {
+            "title":"ska inte finnas",
+            "content":"bajs bajs bajs bajsmannen suger",
+            "classes":[],
+            "category":"",
+            "startDate":"0",
+            "endDate":"0"
+        }
+	]
+}
