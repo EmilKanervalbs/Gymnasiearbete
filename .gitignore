@@ -1,2 +1,4 @@
 backup
 project/server.bat
+.gitignore
+project/__pycache__

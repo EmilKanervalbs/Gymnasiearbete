@@ -6,7 +6,9 @@
             "classes":["test"],
             "category":"",
             "startDate":"0",
-            "endDate":"0"
+            "endDate":"0",
+            "sender":"rektor",
+            "newsid":0
         },
         {
             "title":"test",
@@ -14,7 +16,9 @@
             "classes":["test"],
             "category":"",
             "startDate":"0",
-            "endDate":"0"
+            "endDate":"0",
+            "sender":"rektor",
+            "newsid":1
         },
         {
             "title":"ska inte finnas",
@@ -22,7 +26,9 @@
             "classes":["test2"],
             "category":"",
             "startDate":"0",
-            "endDate":"0"
+            "endDate":"0",
+            "sender":"rektor",
+            "newsid":2
         }
 	]
 }

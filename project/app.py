@@ -68,7 +68,7 @@ def getnews(newsID=None):
     user = None
 
     if request.cookies.get("session") in server.userSessions:
-        print("------------------------------------cunt")
+        # print("------------------------------------ok")
         user = server.userSessions[request.cookies.get("session")]
         
         group = user["class"]
@@ -79,17 +79,26 @@ def getnews(newsID=None):
             
             # print("--x--",news)
 
-        deliveryNews = {"news":[]}
+        if newsID == None:
+            newsDelivery = {"news":[]}
 
-        for news in server.news["news"]:
-            # print("------------------------",str(news["classes"]))
-            if len(deliveryNews) > 5:
-                break
-            elif group not in news["classes"]:
-                continue
-            else: 
-                deliveryNews["news"].append(news)
+            for news in server.news["news"]:
+                # print("------------------------",str(news["classes"]))
+                if len(newsDelivery) > 5:
+                    break
+                elif group not in news["classes"]:
+                    continue
+                else: 
+                    newsDelivery["news"].append(news)
 
-        return deliveryNews
+            return newsDelivery
+        else:
+            newsID = int(newsID)
+            print("news requested by ID")
+            for news in server.news["news"]:
+                if news["newsid"] == newsID:
+                    print("found news ID", newsID)
+                    return news
+
     print("---------------------------------nope")
     return '{"news":["bajs"]}'

@@ -424,6 +424,42 @@ div.uppgifter {
     display: none;
 }
 
+div.popup-background {
+    display: none;
+    &.visible{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-around;
+        div.popup-overlay {
+            margin-top: 100px;
+            padding: 14px;
+            border-radius: 2rem;
+            width: 500px;
+            height: 500px;
+            background-color: white;
+            .title-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                div h3, div h4 {
+                    text-align: right;
+                }
+            }
+            h2 {
+                font-weight: bold;
+                padding-bottom: 5px;
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
 @media (max-width: 1000px) {
     main {
         grid-template-columns: 1fr 1fr;

@@ -51,6 +51,7 @@ var getNews = async () => {
         console.log(a);
         let title = a.title;
         let content = a.content;
+        let news_id = a.newsid;
 
         // let newsElement = document.createElement("news")
 
@@ -59,7 +60,7 @@ var getNews = async () => {
         element.setAttribute("title", title);
         element.setAttribute("content", content);
         element.setAttribute("sender", "");
-        element.setAttribute("news-id", "");
+        element.setAttribute("news-id", news_id);
 
         newsWrapper.appendChild(element);
 
@@ -78,8 +79,24 @@ var getNews = async () => {
     window.customElements.define("news-element", news)
 }
 
-
 getNews();
+
+var getNewsByID = async (id) => {
+    console.log("requesting news id " + id);
+    let news = await fetch("/getnews/" + id)
+        .then((resp) => {
+            console.log("response recieved");
+            console.log(resp);
+
+            return resp.json();
+    })
+        .then((news) => {
+            console.log(news);
+            return news
+    });
+
+    return news;
+}
 
 class news extends HTMLElement {
     constructor() {
@@ -130,9 +147,15 @@ class news extends HTMLElement {
         TBODY.append(TR);
         TABLE.append(TBODY)
 
-        shadowDOM.append(TABLE);
-
-        
-        
+        shadowDOM.append(TABLE);       
     }
 }
+
+document.getElementById("news").addEventListener("click", e => { // ifall man clickar på en nyhet
+    if (e.target.nodeName == "NEWS-ELEMENT"){
+        console.log(e.target.getAttribute("news-id"));   
+
+
+
+    }
+});
