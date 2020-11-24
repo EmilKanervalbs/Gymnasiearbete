@@ -27,7 +27,7 @@ setTimeout(() => {
 
 
 let x = document.getElementById("news")
-console.log(x)
+// console.log(x)
 
 var getNews = async () => {
     console.log("requesting news");
@@ -43,26 +43,96 @@ var getNews = async () => {
             return news
     });
 
-    const newsElement = document.getElementById("news").querySelector("tbody")
+    // const newsElement = document.getElementById("news").querySelector("tbody");
+    const newsWrapper = document.getElementById("news").querySelector("div");
     
     console.log(x["news"]);
     x["news"].forEach(a => {
         console.log(a);
         let title = a.title;
         let content = a.content;
-        let TR = document.createElement("tr");
-        let TH = document.createElement("th");
-        TH.innerText = title;
-        TR.appendChild(TH);
 
-        let TD = document.createElement("td");
-        TD.innerText = content;
-        TR.appendChild(TD)
+        // let newsElement = document.createElement("news")
 
-        newsElement.appendChild(TR);
-    })
+        let element = document.createElement("news-element");
+
+        element.setAttribute("title", title);
+        element.setAttribute("content", content);
+        element.setAttribute("sender", "");
+        element.setAttribute("news-id", "");
+
+        newsWrapper.appendChild(element);
+
+
+        // let TR = document.createElement("tr");
+        // let TH = document.createElement("th");
+        // TH.innerText = title;
+        // TR.appendChild(TH);
+
+        // let TD = document.createElement("td");
+        // TD.innerText = content;
+        // TR.appendChild(TD)
+
+        // newsElement.appendChild(TR);
+    });
+    window.customElements.define("news-element", news)
 }
 
 
 getNews();
 
+class news extends HTMLElement {
+    constructor() {
+        super();
+        var shadowDOM = this.attachShadow({
+            mode : "open"
+        });
+
+        var LINK = document.createElement("link")
+        LINK.setAttribute("rel", "stylesheet")
+        LINK.setAttribute("href", "/css/normalize.css")
+
+        var LINK2 = document.createElement("link")
+        LINK2.setAttribute("rel", "stylesheet")
+        LINK2.setAttribute("href", "/css/style.css")
+    
+        shadowDOM.appendChild(LINK);
+        shadowDOM.appendChild(LINK2);
+
+
+        var newsID = this.getAttribute("news-id");
+        var sender = this.getAttribute("sender");
+        var title = this.getAttribute("title");
+        var content = this.getAttribute("content");
+
+        var TABLE = document.createElement("table");
+        TABLE.className = "newstable";
+
+        var TBODY = document.createElement("tbody");
+        var TR = document.createElement("tr");
+
+
+
+        console.log(newsID);
+        console.log(sender);
+        console.log(title);
+        console.log(content);
+
+        var NEWS_TITLE = document.createElement("th");
+        NEWS_TITLE.innerText = title;
+
+        var NEWS_CONTENT = document.createElement("td");
+        NEWS_CONTENT.innerText = content;
+
+        TR.append(NEWS_TITLE);
+        TR.append(NEWS_CONTENT);
+
+        TBODY.append(TR);
+        TABLE.append(TBODY)
+
+        shadowDOM.append(TABLE);
+
+        
+        
+    }
+}
