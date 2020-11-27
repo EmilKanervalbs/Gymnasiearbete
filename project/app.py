@@ -58,13 +58,6 @@ def assignments():
 @app.route("/getnews/", methods=["GET"])
 @app.route("/getnews/<newsID>", methods=["GET"])
 def getnews(newsID=None):
-
-    print(request.cookies.get("session"))
-
-    print(server.userSessions)
-
-    print(request.cookies.get("session") in server.userSessions)
-
     user = None
 
     if request.cookies.get("session") in server.userSessions:
@@ -112,3 +105,9 @@ def getnews(newsID=None):
 
     print("---------------------------------nope")
     return '{"news":["bajs"]}'
+
+@app.route("/getuser")
+def getuser():
+    if request.cookies.get("session") in server.userSessions:
+        # print("------------------------------------ok")
+        return server.userSessions[request.cookies.get("session")]
