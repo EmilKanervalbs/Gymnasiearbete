@@ -89,7 +89,17 @@ def getnews(newsID=None):
                 elif group not in news["classes"]:
                     continue
                 else: 
-                    newsDelivery["news"].append(news)
+                    newsDelivery["news"].append(news.copy())
+
+            for news in newsDelivery["news"]:
+                oldContent = news["content"]
+                newContent = ""
+                for i in range(len(oldContent)):
+                    newContent += oldContent[i]
+                    if i > 75:
+                        newContent += "..."
+                        break
+                news["content"] = newContent
 
             return newsDelivery
         else:
