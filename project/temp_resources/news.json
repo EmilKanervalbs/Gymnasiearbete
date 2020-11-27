@@ -2,11 +2,11 @@
     "news":[
 		{
             "title":"test",
-            "content":"jodå det är ju ett test för att se om man kan läsa in json liksom cool",
+            "content":"jodå det är ju ett test för att se om man kan läsa in json liksom cool dsj sj jskjd jksdkj sjkd kjsd jkskjd",
             "classes":["test"],
             "category":"",
-            "startDate":"0",
-            "endDate":"0",
+            "startDate":0,
+            "endDate":0,
             "sender":"rektor",
             "newsid":0
         },
@@ -15,8 +15,8 @@
             "content":"uh oh stinky poop",
             "classes":["test"],
             "category":"",
-            "startDate":"0",
-            "endDate":"0",
+            "startDate":0,
+            "endDate":0,
             "sender":"rektor",
             "newsid":1
         },
@@ -25,8 +25,8 @@
             "content":"bajs bajs bajs bajsmannen suger",
             "classes":["test2"],
             "category":"",
-            "startDate":"0",
-            "endDate":"0",
+            "startDate":0,
+            "endDate":0,
             "sender":"rektor",
             "newsid":2
         }

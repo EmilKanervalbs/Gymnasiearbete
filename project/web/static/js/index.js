@@ -1,27 +1,24 @@
 var TIME = document.getElementById("time");
 
-var Lengthen = (x) => {
-    if (x < 10) {
-        return "0" + x;
-    }
-    return x;
+var lengthen = (x) => {
+    return x < 10 ? "0" + x : x;
 };
 
-var UpdateTime = () => {
+var updateTime = () => {
     let time = new Date;
     
-    TIME.innerText = Lengthen(time.getHours()) + ":" + Lengthen(time.getMinutes()) + ":" + Lengthen(time.getSeconds());
+    TIME.innerText = lengthen(time.getHours()) + ":" + lengthen(time.getMinutes()) + ":" + lengthen(time.getSeconds());
 }
 
 let currentTime = new Date;
 
-UpdateTime();
+updateTime();
 
 setTimeout(() => {
     setInterval(() => {
-        UpdateTime();
+        updateTime();
     }, 1000);
-    UpdateTime();
+    updateTime();
 }, 1000 - currentTime.getMilliseconds());
 
 
@@ -76,7 +73,7 @@ var getNews = async () => {
 
         // newsElement.appendChild(TR);
     });
-    window.customElements.define("news-element", news)
+    window.customElements.define("news-element", News)
 }
 
 getNews();
@@ -98,7 +95,11 @@ var getNewsByID = async (id) => {
     return news;
 }
 
-class news extends HTMLElement {
+console.log(getNewsByID(0));
+
+console.log(Date.now());
+
+class News extends HTMLElement {
     constructor() {
         super();
         var shadowDOM = this.attachShadow({
@@ -151,11 +152,29 @@ class news extends HTMLElement {
     }
 }
 
-document.getElementById("news").addEventListener("click", e => { // ifall man clickar på en nyhet
+document.getElementById("news").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
     if (e.target.nodeName == "NEWS-ELEMENT"){
-        console.log(e.target.getAttribute("news-id"));   
+        // console.log(e.target.getAttribute("news-id"));
+        const POPUP = document.getElementById("popup");
+        let news = await getNewsByID(e.target.getAttribute("news-id"));
+
+        POPUP.querySelector("h2").innerText = news.title;
+        POPUP.querySelector("h3").innerText = "Av: " + news.sender;
+        POPUP.querySelector("p").innerText = news.content;
+        
+        let date = new Date(news.startDate);
+        // date.setTime(news.startDate);
+        POPUP.querySelector("h4").innerText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${lengthen(date.getHours())}:${lengthen(date.getMinutes())}`
 
 
+        POPUP.classList.add("visible");
 
+    }
+});
+
+document.getElementById("popup").addEventListener("click", e => {
+    if (e.target.id = "popup") {
+        e.target.classList.remove("visible");
+        return;
     }
 });
