@@ -20,17 +20,16 @@ body {
 
 .topbar ul li {
   background-color: #F8F8F8;
-  padding: 1.5em;
+  padding: 1.5em 0;
+  height: 3rem;
   float: left;
   height: 1em;
+  min-width: 12ch;
+  text-align: center;
 }
 
-.topbar ul li#name {
-  min-width: 15ch;
-}
-
-.topbar ul li#time {
-  padding-left: 0;
+.topbar ul li:hover {
+  background-color: #ebebeb;
 }
 
 .topbar ul li.triangle {
@@ -39,21 +38,22 @@ body {
   padding: 0;
   width: 0;
   height: 0;
+  min-width: 0;
 }
 
-.topbar ul li:hover ul.dropbar {
+.topbar ul li:hover ul.dropbar, .topbar ul li:hover ul.dropbar a, .topbar ul li:hover ul.dropbar a li {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
 }
 
-.topbar ul li:hover ul.dropbar li {
+.topbar ul li:hover ul.dropbar li, .topbar ul li:hover ul.dropbar a li, .topbar ul li:hover ul.dropbar a li li {
   opacity: 0;
   z-index: -100;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(1) li {
+.topbar ul li:hover ul.dropbar a:nth-child(1) li, .topbar ul li:hover ul.dropbar a a:nth-child(1) li, .topbar ul li:hover ul.dropbar a li a:nth-child(1) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -66,7 +66,7 @@ body {
           animation-delay: 0ms;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(2) li {
+.topbar ul li:hover ul.dropbar a:nth-child(2) li, .topbar ul li:hover ul.dropbar a a:nth-child(2) li, .topbar ul li:hover ul.dropbar a li a:nth-child(2) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -79,7 +79,7 @@ body {
           animation-delay: 150ms;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(3) li {
+.topbar ul li:hover ul.dropbar a:nth-child(3) li, .topbar ul li:hover ul.dropbar a a:nth-child(3) li, .topbar ul li:hover ul.dropbar a li a:nth-child(3) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -92,7 +92,7 @@ body {
           animation-delay: 300ms;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(4) li {
+.topbar ul li:hover ul.dropbar a:nth-child(4) li, .topbar ul li:hover ul.dropbar a a:nth-child(4) li, .topbar ul li:hover ul.dropbar a li a:nth-child(4) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -105,7 +105,7 @@ body {
           animation-delay: 450ms;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(5) li {
+.topbar ul li:hover ul.dropbar a:nth-child(5) li, .topbar ul li:hover ul.dropbar a a:nth-child(5) li, .topbar ul li:hover ul.dropbar a li a:nth-child(5) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -118,7 +118,7 @@ body {
           animation-delay: 600ms;
 }
 
-.topbar ul li:hover ul.dropbar a:nth-child(6) li {
+.topbar ul li:hover ul.dropbar a:nth-child(6) li, .topbar ul li:hover ul.dropbar a a:nth-child(6) li, .topbar ul li:hover ul.dropbar a li a:nth-child(6) li {
   -webkit-animation-name: dropdown-menu-fade-in;
           animation-name: dropdown-menu-fade-in;
   -webkit-animation-duration: 300ms;
@@ -131,7 +131,7 @@ body {
           animation-delay: 750ms;
 }
 
-.topbar ul li:hover ul.dropbar li:hover {
+.topbar ul li:hover ul.dropbar li:hover, .topbar ul li:hover ul.dropbar a li:hover, .topbar ul li:hover ul.dropbar a li li:hover {
   background-color: #d2d2d2;
 }
 
@@ -141,6 +141,7 @@ body {
   left: 0%;
   width: 100%;
   display: none;
+  z-index: 10;
 }
 
 .topbar ul li ul.dropbar a {
@@ -148,17 +149,33 @@ body {
 }
 
 .topbar ul li ul.dropbar a li {
-  width: calc(100% - 54px);
-  background-color: #dfdfdf;
+  margin: 0 -0.25rem;
+  z-index: 10;
+  background-color: #f8f8f8;
   border-radius: 0.5rem;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
           box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
+  padding: 1rem 0.25rem;
+}
+
+.topbar ul li ul.dropbar a li.log-out-button {
+  background-color: red;
+}
+
+.topbar ul li ul.dropbar a li.log-out-button:hover {
+  -webkit-transition: background-color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out;
+  background-color: #e60000;
 }
 
 .topbar a:hover li {
   -webkit-transition: background-color 100ms ease-in-out;
   transition: background-color 100ms ease-in-out;
   background-color: #dfdfdf;
+}
+
+li.tooltip-parent span.tooltip {
+  opacity: 0;
 }
 
 @-webkit-keyframes dropdown-menu-fade-in {
@@ -277,6 +294,7 @@ main section {
 
 table.newstable {
   width: 100%;
+  margin-top: 0.2rem;
 }
 
 table.newstable tbody {
@@ -296,8 +314,6 @@ table.newstable tbody tr th, table.newstable tbody tr td {
 }
 
 table.newstable tbody tr th {
-  margin-top: 0.2rem;
-  padding-top: 0.2rem;
   font-weight: bold;
   padding-bottom: 2px;
   font-size: 1.1em;
@@ -355,6 +371,10 @@ table.newstable tbody tr:nth-child(2n + 1) th, table.newstable tbody tr:nth-chil
   border-top-right-radius: 0.5rem;
   font-size: 1rem;
   color: #6464c8;
+}
+
+.newstable:hover {
+  cursor: pointer;
 }
 
 .box2 {

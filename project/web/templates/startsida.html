@@ -20,12 +20,24 @@
             <a href="/news" class="narrowGone">
                 <li> Nyheter </li>
             </a>
-            <a href="/assignments" class="narrowGone">
-                <li> Uppgifter </li>
-            </a>
-            <a href="https://store.steampowered.com" class="narrowGone">
-                <li> Resultat </li>
-            </a>
+            <!-- <a href="/assignments" class="narrowGone">  -->
+                <li id="navbar-assignments" class="narrowGone dropdown-parent">  
+					<a href="/assignments">
+						Uppgifter
+					</a>           
+                    <ul class="dropbar">
+                        <a> <li> WEBWES01 </li> </a>
+                        <a> <li> SVESVE03 </li> </a>
+                        <a> <li> MATMAT05 </li> </a>
+                        <a> <li> MATMAT04 </li> </a>
+                    </ul>
+                </li>
+            <!-- </a> -->
+            <li id="navbar-results" class="narrowGone dropdown-parent"> 
+                <a href="https://store.steampowered.com" class="narrowGone">
+                Resultat </a>
+            </li>
+            
             <li id="triangle2" class="triangle"></li>
             
             <li id="name"> 
@@ -41,7 +53,7 @@
                         </li>
                     </a>
                     <a href="/logout">
-                        <li>
+                        <li class="log-out-button">
                             Logga ut
                         </li>
                     </a>
@@ -52,7 +64,7 @@
         </ul>
     </nav>
 
-    <div class="popup-background visible">
+    <div class="popup-background" id="popup">
         <div class="popup-overlay">
             <div class="title-row">
                 <h2> 
@@ -136,7 +148,7 @@
         <section class="boxcontainer">
             <div class="box">
                 <h2 class="boxtitle">
-                    Profil
+                    Planeringar
                 </h2>
                 <div class="boxcontent">
 

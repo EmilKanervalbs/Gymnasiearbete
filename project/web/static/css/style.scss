@@ -35,18 +35,31 @@ body {
 
         li {
             background-color: $navbar-color;
-            padding: 1.5em;
+            padding: 1.5em 0;
+            height: 3rem;
+
             float: left;
 
             height: 1em;
+            &:hover {
+                background-color: darken($navbar-color, 5);
+			}
+			
+			min-width: 12ch;
+			text-align: center;
 
-            &#name {
-                min-width: 15ch;
-            }
+            // &.dropdown-parent {
+			// 	min-width: 7ch;
+			// 	text-align: center;
+			// }
+			
+			&#name {
+				// min-width: 12ch;
+			}
 
-            &#time {
-                padding-left: 0;
-            }
+            // &#time {
+            //     // padding-left: 0;
+            // }
 
             &.triangle {
                 position: relative;
@@ -54,10 +67,11 @@ body {
                 padding: 0;
                 // top: -2.5em;
                 width: 0;
-                height: 0;
+				height: 0;
+				min-width: 0;
             }
 
-            &:hover ul.dropbar{
+            &:hover ul.dropbar, &:hover ul.dropbar a, &:hover ul.dropbar a li{
                 display: grid;
                 grid-template-columns: 1fr;
 
@@ -67,13 +81,17 @@ body {
                 }
 
                 @for $i from 1 through 6 {
-                    a:nth-child(#{$i}) li {
-                        animation-name: dropdown-menu-fade-in;
-                        animation-duration: 300ms;
-                        animation-timing-function: cubic-bezier(0.2, 0.9, 0.5   , 1);
-                        animation-fill-mode: forwards;
-                        animation-delay: 150ms * ($i - 1);
-                    }
+					a:nth-child(#{$i}) {
+						// top: ($i - 1) * 55px + 5px;
+						li {
+							animation-name: dropdown-menu-fade-in;
+							animation-duration: 300ms;
+							animation-timing-function: cubic-bezier(0.2, 0.9, 0.5   , 1);
+							animation-fill-mode: forwards;
+							animation-delay: 150ms * ($i - 1);
+							// top: ($i -1) * 0px;
+						}
+					}
                 }
 
                 li:hover {
@@ -91,20 +109,36 @@ body {
                 left: 0%;
                 width: 100%;
                 display: none;                    
+				z-index: 10;
 
 
 
                 a  {
-                    margin-top: 0.5rem;
+					margin-top: 0.5rem;
+					// position: inherit;
+					// position: absolute;
+					// padding: 50px;
+					// padding-top: 50px;
+					
 
                     li {
-                        width: calc(100% - 54px);
-
-                        background-color: darken($navbar-color, 10);
+						// width: 10ch;
+                        margin: 0 -0.25rem;
+						z-index: 10;
+                        background-color: darken($navbar-color, 0);
                         border-radius: 0.5rem;
                         box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
+                        padding: 1rem 0.25rem;
                         // padding-left: 0.5rem;
-                        // padding-right: 0.5rem;
+						// padding-right: 0.5rem;
+						// overflow: hidden;
+                        &.log-out-button {
+                            background-color: rgb(255, 0, 0);
+                            &:hover {
+                                transition: background-color 100ms ease-in-out;
+                                background-color: darken(rgb(255, 0, 0), 5);
+                            }
+                        }
                     }
                 }
             }
@@ -115,8 +149,17 @@ body {
 
     a:hover li {
         transition: background-color 100ms ease-in-out;
-        background-color: darken($navbar-color, 10);
+		background-color: darken($navbar-color, 10);
     }
+}
+
+li.tooltip-parent  {
+	span.tooltip {
+		opacity: 0;
+	}
+	&:hover span.tooltip {
+		
+	}
 }
 
 @keyframes dropdown-menu-fade-in {
@@ -225,6 +268,7 @@ main {
 
 table.newstable {
     width: 100%;
+    margin-top: 0.2rem;
 
     tbody {
         width: 100%;
@@ -233,19 +277,15 @@ table.newstable {
             width: 100%;
 
             th, td {
-            display: block;
-            text-align: left;
-            // background: black;
-            padding: 0 0.2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            width: calc(100% - 0.5rem);
-
-
+                display: block;
+                text-align: left;
+                // background: black;
+                padding: 0 0.2rem;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                width: calc(100% - 0.5rem);
             }
 
             th {
-                margin-top: 0.2rem;
-                padding-top: 0.2rem;
                 font-weight: bold;
                 padding-bottom: 2px;
                 font-size: 1.1em;
@@ -316,6 +356,9 @@ table.newstable {
     }
 }
 
+.newstable:hover {
+    cursor: pointer;
+}
 
 
 
