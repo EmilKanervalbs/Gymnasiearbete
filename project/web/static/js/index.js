@@ -81,25 +81,39 @@ var getUser = async () => {
     let x = await fetch("/getuser")
         .then((resp) => {
             console.log("response recieved");
-            // console.log(resp);
+            console.log(resp);
 
             return resp.json();
-    	})
+	})
         .then((news) => {
-            // console.log(news);
+            console.log(news);
             return news;
     });
-    console.log(x);
-    return x;
+    // console.log(x);
+	// return x;
+	const assignmentUL = document.getElementById("navbar-assignments").querySelector("ul");
+	const resultsUL = document.getElementById("navbar-results").querySelector("ul");
+	let y = x.lessons
+	y.forEach((z) => {
+		let A = document.createElement("a");
+		let LI = document.createElement("li");
+		LI.innerText = z.code;
+		A.append(LI);
+		let a = A.cloneNode(true);
+		assignmentUL.append(A);
+		resultsUL.append(a);
+	});
 }
 
-var user = getUser().then(data => {
-	console.log(data);
-	user = "bajs";
-	return data;
+getUser();
 
-}); //fixa så att den gör skit typ asså verkligen
-console.log(user);
+// var user = getUser().then(data => {
+// 	console.log(data);
+// 	user = "bajs";
+// 	return data;
+
+// }); //fixa så att den gör skit typ asså verkligen
+// console.log(user);
 
 class News extends HTMLElement {
     constructor() {

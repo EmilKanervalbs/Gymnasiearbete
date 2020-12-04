@@ -31,22 +31,26 @@
             "newsid":2
         }
 	],
-	"classes" : {
+	"groups" : {
 		"test" : {
 			"lessons" : ["WEBWES01", "SVESVE03", "MATMAT04", "MATMAT05"]
 		}
 	},
-	"lessons" : {
+	"classes" : {
 		"WEBWES01" : {
+			"code" : "WEBWES01",
 			"displayName" : "Webbserverprogrammering 1"
 		},
 		"SVESVE03" : {
+			"code" : "SVESVE03",
 			"displayName" : "Svenska 3"
 		},
 		"MATMAT04" : {
+			"code" : "MATMAT04",
 			"displayName" : "Matematik 4"
 		},
 		"MATMAT05" : {
+			"code" : "MATMAT05",
 			"displayName" : "Matematik 5"
 		}
 	}

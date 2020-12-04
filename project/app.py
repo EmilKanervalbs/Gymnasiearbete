@@ -5,22 +5,26 @@ import json
 app = Flask(__name__, static_folder="web/static", static_url_path="", template_folder="web/templates")
 
 class Server():
-    def __init__(self):
-        testUser = {
-            "name":"BajsMannen",
-            "firstName":"Bajs",
-            "lastName":"Mannen",
-            "class":"test",
+	def __init__(self):
+		testUser = {
+			"name":"BajsMannen",
+			"firstName":"Bajs",
+			"lastName":"Mannen",
+			"group":"test",
 			"lessons":[]
-        }
-        self.users = []
-        self.users.append(testUser)
-        self.userSessions = {"helo_wrold": self.users[0]}
+		}
+		self.users = []
+		self.users.append(testUser)
+		self.userSessions = {"helo_wrold": self.users[0]}
 
-        with open("temp_resources/news.json", "r") as zzz:
-            test = zzz.read()
+		with open("temp_resources/news.json", "r") as zzz:
+			test = zzz.read()
 
-        self.content = json.loads(test)
+		self.content = json.loads(test)
+
+		for user in self.users:
+			for lesson in self.content["groups"][user["group"]]["lessons"]:
+				user["lessons"].append(self.content["classes"][lesson])
 
 server = Server()
 
@@ -61,9 +65,9 @@ def getnews(newsID=None):
         # print("------------------------------------ok")
         user = server.userSessions[request.cookies.get("session")]
         
-        group = user["class"]
+        group = user["group"]
 
-        print(user["class"])
+        print(user["group"])
 
         # for news in server.content["news"]:
             
@@ -106,9 +110,12 @@ def getnews(newsID=None):
 @app.route("/getuser")
 def getuser():
 	if request.cookies.get("session") in server.userSessions:
-		# user = server.users[0]
-		# z = user["class"]
-		# for y in z:
-		# 	user["lessons"].append(server.content[""])
-		# print("------------------------------------ok")
+		# user = server.userSessions[request.cookies.get("session")].copy()
+
+		# print(user["lessons"])
+
+		# for lesson in server.content["groups"][user["group"]]["lessons"]:
+
+		# 	user["lessons"].append(server.content["classes"][lesson])
+
 		return server.userSessions[request.cookies.get("session")]

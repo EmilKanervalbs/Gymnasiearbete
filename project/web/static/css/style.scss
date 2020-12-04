@@ -53,22 +53,22 @@ body {
 			// 	text-align: center;
 			// }
 			
-			&#name {
-				// min-width: 12ch;
-			}
+			// &#name {
+			// 	// min-width: 12ch;
+			// }
 
             // &#time {
             //     // padding-left: 0;
             // }
 
             &.triangle {
-                position: relative;
-                background-color: transparent;
-                padding: 0;
-                // top: -2.5em;
-                width: 0;
+				position: relative;
+				background-color: transparent;
+				padding: 0;
+				// top: -2.5em;
+				width: 0;
 				height: 0;
-				min-width: 0;
+                min-width: 0;
             }
 
             &:hover ul.dropbar, &:hover ul.dropbar a, &:hover ul.dropbar a li{
@@ -80,13 +80,13 @@ body {
                     z-index: -100;
                 }
 
-                @for $i from 1 through 6 {
+                @for $i from 1 through 10 {
 					a:nth-child(#{$i}) {
 						// top: ($i - 1) * 55px + 5px;
 						li {
 							animation-name: dropdown-menu-fade-in;
 							animation-duration: 300ms;
-							animation-timing-function: cubic-bezier(0.2, 0.9, 0.5   , 1);
+                            animation-timing-function: cubic-bezier(0.2, 0.9, 0.5   , 1);
 							animation-fill-mode: forwards;
 							animation-delay: 150ms * ($i - 1);
 							// top: ($i -1) * 0px;
@@ -110,8 +110,6 @@ body {
                 width: 100%;
                 display: none;                    
 				z-index: 10;
-
-
 
                 a  {
 					margin-top: 0.5rem;
@@ -156,9 +154,6 @@ body {
 li.tooltip-parent  {
 	span.tooltip {
 		opacity: 0;
-	}
-	&:hover span.tooltip {
-		
 	}
 }
 
