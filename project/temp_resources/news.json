@@ -30,5 +30,27 @@
             "sender":"rektor",
             "newsid":2
         }
-	]
+	],
+	"classes" : {
+		"test" : {
+			"lessons" : ["WEBWES01", "SVESVE03", "MATMAT04", "MATMAT05"]
+		}
+	},
+	"lessons" : {
+		"WEBWES01" : {
+			"displayName" : "Webbserverprogrammering 1"
+		},
+		"SVESVE03" : {
+			"displayName" : "Svenska 3"
+		},
+		"MATMAT04" : {
+			"displayName" : "Matematik 4"
+		},
+		"MATMAT05" : {
+			"displayName" : "Matematik 5"
+		}
+	}
+			
+		
+	
 }

@@ -21,8 +21,6 @@ setTimeout(() => {
     updateTime();
 }, 1000 - currentTime.getMilliseconds());
 
-
-
 let x = document.getElementById("news")
 // console.log(x)
 
@@ -31,26 +29,22 @@ var getNews = async () => {
     let x = await fetch("/getnews/")
         .then((resp) => {
             console.log("response recieved");
-            console.log(resp);
+            // console.log(resp);
 
             return resp.json();
     })
         .then((news) => {
-            console.log(news);
+            // console.log(news);
             return news
     });
 
     // const newsElement = document.getElementById("news").querySelector("tbody");
     const newsWrapper = document.getElementById("news").querySelector("div");
     
-    console.log(x["news"]);
     x["news"].forEach(a => {
-        console.log(a);
         let title = a.title;
         let content = a.content;
         let news_id = a.newsid;
-
-        // let newsElement = document.createElement("news")
 
         let element = document.createElement("news-element");
 
@@ -60,18 +54,6 @@ var getNews = async () => {
         element.setAttribute("news-id", news_id);
 
         newsWrapper.appendChild(element);
-
-
-        // let TR = document.createElement("tr");
-        // let TH = document.createElement("th");
-        // TH.innerText = title;
-        // TR.appendChild(TH);
-
-        // let TD = document.createElement("td");
-        // TD.innerText = content;
-        // TR.appendChild(TD)
-
-        // newsElement.appendChild(TR);
     });
     window.customElements.define("news-element", News)
 }
@@ -83,21 +65,41 @@ var getNewsByID = async (id) => {
     let news = await fetch("/getnews/" + id)
         .then((resp) => {
             console.log("response recieved");
-            console.log(resp);
+            // console.log(resp);
 
-            return resp.json();
+            // return resp.json();
     })
         .then((news) => {
-            console.log(news);
+            // console.log(news);
             return news
     });
 
     return news;
 }
 
-console.log(getNewsByID(0));
+var getUser = async () => {
+    let x = await fetch("/getuser")
+        .then((resp) => {
+            console.log("response recieved");
+            // console.log(resp);
 
-console.log(Date.now());
+            return resp.json();
+    	})
+        .then((news) => {
+            // console.log(news);
+            return news;
+    });
+    console.log(x);
+    return x;
+}
+
+var user = getUser().then(data => {
+	console.log(data);
+	user = "bajs";
+	return data;
+
+}); //fixa så att den gör skit typ asså verkligen
+console.log(user);
 
 class News extends HTMLElement {
     constructor() {
@@ -131,10 +133,10 @@ class News extends HTMLElement {
 
 
 
-        console.log(newsID);
-        console.log(sender);
-        console.log(title);
-        console.log(content);
+        // console.log(newsID);
+        // console.log(sender);
+        // console.log(title);
+        // console.log(content);
 
         var NEWS_TITLE = document.createElement("th");
         NEWS_TITLE.innerText = title;

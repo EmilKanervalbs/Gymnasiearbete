@@ -10,7 +10,8 @@ class Server():
             "name":"BajsMannen",
             "firstName":"Bajs",
             "lastName":"Mannen",
-            "class":"test"
+            "class":"test",
+			"lessons":[]
         }
         self.users = []
         self.users.append(testUser)
@@ -19,13 +20,9 @@ class Server():
         with open("temp_resources/news.json", "r") as zzz:
             test = zzz.read()
 
-        self.news = json.loads(test)
-
+        self.content = json.loads(test)
 
 server = Server()
-
-print(str(server.news)) # big problemo
-
 
 @app.route("/")
 def index():
@@ -68,14 +65,14 @@ def getnews(newsID=None):
 
         print(user["class"])
 
-        # for news in server.news["news"]:
+        # for news in server.content["news"]:
             
             # print("--x--",news)
 
         if newsID == None:
             newsDelivery = {"news":[]}
 
-            for news in server.news["news"]:
+            for news in server.content["news"]:
                 # print("------------------------",str(news["classes"]))
                 if len(newsDelivery) > 5:
                     break
@@ -98,7 +95,7 @@ def getnews(newsID=None):
         else:
             newsID = int(newsID)
             print("news requested by ID")
-            for news in server.news["news"]:
+            for news in server.content["news"]:
                 if news["newsid"] == newsID:
                     print("found news ID", newsID)
                     return news
@@ -108,6 +105,10 @@ def getnews(newsID=None):
 
 @app.route("/getuser")
 def getuser():
-    if request.cookies.get("session") in server.userSessions:
-        # print("------------------------------------ok")
-        return server.userSessions[request.cookies.get("session")]
+	if request.cookies.get("session") in server.userSessions:
+		# user = server.users[0]
+		# z = user["class"]
+		# for y in z:
+		# 	user["lessons"].append(server.content[""])
+		# print("------------------------------------ok")
+		return server.userSessions[request.cookies.get("session")]
