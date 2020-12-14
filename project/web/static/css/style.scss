@@ -94,7 +94,7 @@ body {
 					}
                 }
 
-                li:hover {
+                a:hover li {
                     background-color: darken($navbar-color, 15);
                 }
 
@@ -118,7 +118,15 @@ body {
 					// padding: 50px;
 					// padding-top: 50px;
 					
+					&:hover {
+						li.log-out-button {
+						    transition: background-color 100ms ease-in-out;
+							background-color: darken(rgb(255, 0, 0), 10);
 
+							// background-color: black;
+
+						}
+					}
                     li {
 						// width: 10ch;
                         margin: 0 -0.25rem;
@@ -131,11 +139,13 @@ body {
 						// padding-right: 0.5rem;
 						// overflow: hidden;
                         &.log-out-button {
-                            background-color: rgb(255, 0, 0);
-                            &:hover {
-                                transition: background-color 100ms ease-in-out;
-                                background-color: darken(rgb(255, 0, 0), 5);
-                            }
+							background-color: rgb(255, 0, 0);
+							// font-weight: bold;
+                            // &:hover {
+                            //     transition: background-color 100ms ease-in-out;
+							// 	background-color: darken(rgb(255, 0, 0), 5);
+							// 	background-color: black;
+                            // }
                         }
                     }
                 }

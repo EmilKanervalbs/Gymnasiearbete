@@ -5,8 +5,8 @@
             "content":"jodå det är ju ett test för att se om man kan läsa in json liksom cool dsj sj jskjd jksdkj sjkd kjsd jkskjd",
             "classes":["test"],
             "category":"",
-            "startDate":0,
-            "endDate":0,
+            "startDate":1607681880,
+            "endDate":16076819400,
             "sender":"rektor",
             "newsid":0
         },
@@ -36,7 +36,7 @@
 			"lessons" : ["WEBWES01", "SVESVE03", "MATMAT04", "MATMAT05"]
 		}
 	},
-	"classes" : {
+	"courses" : {
 		"WEBWES01" : {
 			"code" : "WEBWES01",
 			"displayName" : "Webbserverprogrammering 1"
@@ -53,6 +53,51 @@
 			"code" : "MATMAT05",
 			"displayName" : "Matematik 5"
 		}
+	},
+	"schedule": {
+		"test": {
+			"monday": {}
+		}
+	},
+	"assignments" : {
+		"test" : [
+			{
+				"course" : "WEBWES01",
+				"name" : "Uppgift: Inloggning",
+				"type" : "assignment",
+				"time" : 1609455599,
+				"description" : "poo poo"
+			},
+			{
+				"course" : "WEBWES01",
+				"name" : "Uppgift: Inloggning",
+				"type" : "verbal",
+				"time" : 1608037187,
+				"description" : "poo poo"
+			},
+			{
+				"course" : "WEBWES01",
+				"name" : "Uppgift: Inloggning",
+				"type" : "exam",
+				"time" : 1608037187,
+				"description" : "poo poo"
+			},
+			{
+				"course" : "WEBWES01",
+				"name" : "Uppgift: Inloggning",
+				"type" : "exam",
+				"time" : 1609455599,
+				"description" : "poo poo"
+			},
+			{
+				"course" : "WEBWES01",
+				"name" : "Uppgift: Inloggning",
+				"type" : "exam",
+				"time" : 1609455599,
+				"description" : "poo poo"
+			}
+
+		]
 	}
 			
 		
