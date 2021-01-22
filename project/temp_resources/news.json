@@ -26,14 +26,17 @@
             "classes":["test2"],
             "category":"",
             "startDate":0,
-            "endDate":0,
+            "endDate":16076819400,
             "sender":"rektor",
             "newsid":2
         }
 	],
 	"groups" : {
 		"test" : {
-			"lessons" : ["WEBWES01", "SVESVE03", "MATMAT04", "MATMAT05"]
+			"courses" : ["WEBWES01", "SVESVE03", "MATMAT04", "MATMAT05"]
+		},
+		"test2" : {
+			"courses" : []
 		}
 	},
 	"courses" : {
@@ -56,50 +59,154 @@
 	},
 	"schedule": {
 		"test": {
-			"monday": {}
+			"normal": [
+				[
+					{
+						"course":"SVESVE03",
+						"startTime" : 600,
+						"endTime" : 660,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					},
+					{
+						"course":"WEBWES01",
+						"startTime" : 700,
+						"endTime" : 760,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					}
+				],
+				[	
+					{
+						"course":"MATMAT04",
+						"startTime" : 600,
+						"endTime" : 760,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					},
+					{
+						"course":"MATMAT05",
+						"startTime" : 600,
+						"endTime" : 760,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					},
+					{
+						"course":"GYARTE",
+						"startTime" : 800,
+						"endTime" : 900,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					}
+				],
+				[],
+				[],
+				[
+					{
+						"course" : "WEBWES01",
+						"startTime" : 605,
+						"endTime" : 685,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					},
+					{
+						"course" : "WEBWES01",
+						"startTime" : 740,
+						"endTime" : 815,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					},
+					{
+						"course" : "KEMKEM01",
+						"startTime" : 845,
+						"endTime" : 885,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					}
+				]
+
+			
+			],
+			"exceptions": [
+
+			]
+		},
+		"test2": {
+			"normal" : [
+				[
+				
+				],
+				[
+					{
+					"course":"IDRIDR01",
+					"startTime" : 500,
+					"endTime" : 550,
+					"exceptForDays" : [],
+					"room" : "Sal 14 Litet"
+				}
+				],
+				[
+
+				],
+				[
+
+				],
+				[
+
+				]
+			]
 		}
 	},
-	"assignments" : {
-		"test" : [
-			{
-				"course" : "WEBWES01",
-				"name" : "Uppgift: Inloggning",
-				"type" : "assignment",
-				"time" : 1609455599,
-				"description" : "poo poo"
-			},
-			{
-				"course" : "WEBWES01",
-				"name" : "Uppgift: Inloggning",
-				"type" : "verbal",
-				"time" : 1608037187,
-				"description" : "poo poo"
-			},
-			{
-				"course" : "WEBWES01",
-				"name" : "Uppgift: Inloggning",
-				"type" : "exam",
-				"time" : 1608037187,
-				"description" : "poo poo"
-			},
-			{
-				"course" : "WEBWES01",
-				"name" : "Uppgift: Inloggning",
-				"type" : "exam",
-				"time" : 1609455599,
-				"description" : "poo poo"
-			},
-			{
-				"course" : "WEBWES01",
-				"name" : "Uppgift: Inloggning",
-				"type" : "exam",
-				"time" : 1609455599,
-				"description" : "poo poo"
-			}
-
-		]
-	}
-			
+	"assignments" : [
+		{
+			"course" : "WEBWES01",
+			"name" : "aa",
+			"type" : "assignment",
+			"time" : 1608307200,
+			"description" : "poo poo",
+			"classes":["test"]
+		},
+		{
+			"course" : "WEBWES01",
+			"name" : "bb",
+			"type" : "verbal",
+			"time" : 1608307200,
+			"description" : "poo poo",
+			"classes":["test"]
+		},
+		{
+			"course" : "WEBWES01",
+			"name" : "cc",
+			"type" : "exam",
+			"time" : 1608307200,
+			"description" : "poo poo",
+			"classes":["test"]
+		},
+		{
+			"course" : "WEBWES01",
+			"name" : "dd",
+			"type" : "exam",
+			"time" : 1609455599,
+			"description" : "poo poo",
+			"classes":["test"]
+		},
+		{
+			"course" : "WEBWES01",
+			"name" : "ee",
+			"type" : "exam",
+			"time" : 1609455599,
+			"description" : "poo poo",
+			"classes":["test"]
+		},
+		{
+			"course" : "WEBWES01",
+			"name" : "ff",
+			"type" : "assignment",
+			"time" : 1609455599,
+			"description" : "poo poo",
+			"classes":["test2"]
+		}
+	]			
 		
 	
 }

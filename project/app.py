@@ -1,8 +1,6 @@
 from flask import Flask, render_template, redirect, make_response, request
 
-import json
-
-import time
+import json, time, datetime
 
 app = Flask(__name__, static_folder="web/static", static_url_path="", template_folder="web/templates")
 
@@ -12,7 +10,7 @@ class Server():
 			"name":"BajsMannen",
 			"firstName":"Bajs",
 			"lastName":"Mannen",
-			"group":"test",
+			"group":["test", "test2"],
 			"lessons":[]
 		}
 		self.users = []
@@ -25,8 +23,11 @@ class Server():
 		self.content = json.loads(test)
 
 		for user in self.users:
-			for lesson in self.content["groups"][user["group"]]["lessons"]:
-				user["lessons"].append(self.content["courses"][lesson])
+			for group in user["group"]:
+				if group not in self.content["groups"]:
+					continue
+				for lesson in self.content["groups"][group]["courses"]:
+					user["lessons"].append(self.content["courses"][lesson])
 
 server = Server()
 
@@ -64,28 +65,18 @@ def getnews(newsID=None):
 	user = None
 
 	if request.cookies.get("session") in server.userSessions:
-		# print("------------------------------------ok")
-		user = server.userSessions[request.cookies.get("session")]
-        
+
+		user = server.userSessions[request.cookies.get("session")]        
 		group = user["group"]
-
-		# print(user["group"])
-
 		currentTime = time.time()
 
-		# for news in server.content["news"]:
-            
-			# print("--x--",news)
-
-		if newsID == None:
+		if not newsID:
 			newsDelivery = {"news":[]}
 
 			for news in server.content["news"]:
-				
-				# print("------------------------",str(news["classes"]))
 				if len(newsDelivery) > 5:
 					break
-				elif group not in news["classes"]:
+				elif not any(i in group for i in news["classes"]):
 					continue
 				elif news["startDate"] > currentTime or news["endDate"] < currentTime:
 					continue
@@ -117,27 +108,26 @@ def getnews(newsID=None):
 @app.route("/getuser")
 def getuser():
 	if request.cookies.get("session") in server.userSessions:
-		# user = server.userSessions[request.cookies.get("session")].copy()
-
-		# print(user["lessons"])
-
-		# for lesson in server.content["groups"][user["group"]]["lessons"]:
-
-		# 	user["lessons"].append(server.content["courses"][lesson])
-
 		return server.userSessions[request.cookies.get("session")]
 
 @app.route("/getassignments")
 def getassignments():
 	print("requested assignments")
 	if request.cookies.get("session") in server.userSessions:
-		user = server.userSessions[request.cookies.get("session")].copy()
+		user = server.userSessions[request.cookies.get("session")]
 		assignments = []
-#
+
 		currentTime = time.time()
 
-		for assignment in server.content["assignments"][user["group"]]:
+		for assignment in server.content["assignments"]:
 			if assignment["time"] < currentTime:
+				continue
+			stop = True
+			for group in assignment["classes"]:
+				if group in user["group"]:
+					stop = False
+					break
+			if stop:
 				continue
 			assignment2 = assignment.copy()
 			assignment2["course"] = server.content["courses"][assignment2["course"]]["displayName"]
@@ -146,6 +136,18 @@ def getassignments():
 		
 		return {"assignments" : assignments}
 
+@app.route("/getschedule")
+def getschedule():
+	if request.cookies.get("session") in server.userSessions:
+		user = server.userSessions[request.cookies.get("session")]
+		lessons = {"normal" : [[], [], [], [], []], "exceptions" : []}
+		# weekday = datetime.datetime.today().weekday()
+		for group in user["group"]:
+			for i in range(5):
+				lessons["normal"][i] += server.content["schedule"][group]["normal"][i]
+
+		return lessons
+				
 
 
 
