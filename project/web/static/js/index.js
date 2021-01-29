@@ -85,23 +85,24 @@ var getNewsByID = async (id) => {
     return news;
 }
 
-var getUser = async () => {
-    let x = await fetch("/getuser")
+var getUser = async () => { // dels tar den user och dels tar den resultaten
+    let user = await fetch("/getuser")
         .then((resp) => {
             console.log("response recieved");
             console.log(resp);
 
             return resp.json();
 	})
-        .then((news) => {
-            console.log(news);
-            return news;
+        .then((data) => {
+            console.log(data);
+            return data;
     });
     // console.log(x);
 	// return x;
 	const assignmentUL = document.getElementById("navbar-assignments").querySelector("ul");
 	const resultsUL = document.getElementById("navbar-results").querySelector("ul");
-	let y = x.lessons
+	const resultsDIV = document.getElementById("results").querySelector("div");
+	let y = user.lessons
 
 	y.forEach((z) => {
 		let A = document.createElement("a");
@@ -112,6 +113,26 @@ var getUser = async () => {
 		assignmentUL.append(A);
 		resultsUL.append(a);
 	});
+
+	user.results.forEach((result) => {
+		// HÄÄÄÄÄÄÄÄÄR fixa att den inte visar för gamla resultat
+
+		let el = document.createElement("results-element"); // name, course, type, due
+		el.setAttribute("name", result.name);
+		el.setAttribute("course", result.course);
+		el.setAttribute("type", result.type);
+
+		date = new Date(result.time * 1000);
+		let dueDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+		el.setAttribute("due", dueDate);
+
+		resultsDIV.append(el);
+	});
+
+	console.log(user.results);
+
+	window.customElements.define("results-element", Results);
+
 }
 
 getUser();
@@ -140,7 +161,7 @@ var getAssignments = async () => {
 
 		let weekendDate = new Date(Math.floor((new Date().getTime()) / 86400000) * 86400000 + (7 - currentTime.getDay()) * 86400000 - 1).getTime();
 
-		let dueDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+		let dueDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
 		element.setAttribute("name", x.name);
 		element.setAttribute("course", x.course);
@@ -282,7 +303,7 @@ var getSchedule = async () => {
 			console.log()
 		}
 		else {
-			el.setAttribute("displayDay", 0);
+			el.setAttribute("displayDay", "");
 		}
 
 		if (i == 0 || lesson.startTime == fullSchedule[0].startTime && lesson.weekday == fullSchedule[0].weekday) { //kollar ifall två lektioner börjar samtidigt
@@ -293,24 +314,28 @@ var getSchedule = async () => {
 		scheduleRoots[1].appendChild(el); // lägg till lektionen i "kommande lektioner"-sektionen
 	}
 	
-	// fullSchedule.forEach((lesson) => {
-	// 	let el = document.createElement("schedule-element");
-	// 	el.setAttribute("start", lesson.startTime); // fixar alla attribut
-	// 	el.setAttribute("course", lesson.course);
-	// 	el.setAttribute("end", lesson.endTime);
-	// 	el.setAttribute("room", lesson.room);
-
-
-	// 	scheduleRoot.appendChild(el);
-
-	// });
-	
 	window.customElements.define("schedule-element", Schedule);
 	
 
 }
 
 getSchedule();
+
+var getResults = async () => {
+	let results = await fetch("/getresults")
+        .then((resp) => {
+            console.log("response recieved");
+
+            return resp.json();
+    })
+        .then((data) => {
+            return data;
+	});
+
+	console.log(results);
+}
+
+// getResults();
 
 
 class News extends HTMLElement {
@@ -443,10 +468,92 @@ class Assignment extends HTMLElement {
 
 		shadowDOM.append(TABLE);  
 		
-		console.log(TABLE);
+		// console.log(TABLE);
 
 	}
 }
+
+class Results extends HTMLElement {
+	constructor() {
+		super();
+		var shadowDOM = this.attachShadow({
+			mode: "open"
+		});
+
+		var LINK = document.createElement("link")
+        LINK.setAttribute("rel", "stylesheet")
+        LINK.setAttribute("href", "/css/normalize.css")
+
+        var LINK2 = document.createElement("link")
+        LINK2.setAttribute("rel", "stylesheet")
+        LINK2.setAttribute("href", "/css/style.css")
+    
+        shadowDOM.appendChild(LINK);
+        shadowDOM.appendChild(LINK2);
+
+
+		var assignmentName = this.getAttribute("name");
+        var course = this.getAttribute("course");
+        var type = this.getAttribute("type");
+        var due = this.getAttribute("due");
+
+        var TABLE = document.createElement("table");
+        TABLE.className = "newstable";
+
+        var TBODY = document.createElement("tbody");
+        var TR = document.createElement("tr");
+
+		let displayType = "";
+
+		switch(type) {
+			case "assignment":
+				displayType = "Inlämningsuppgift";
+				break;
+			case "verbal":
+				displayType = "Muntlig uppgift";
+				break;
+			case "exam":
+				displayType = "Prov";
+				break;
+		}
+
+        var ASSIGNMENT_NAME = document.createElement("th");
+        ASSIGNMENT_NAME.innerText = assignmentName;
+
+		var FIRST_ROW = document.createElement("td");
+
+        var COURSE_NAME = document.createElement("div");
+		COURSE_NAME.innerText = course;
+
+		var DUE_DATE = document.createElement("div");
+		DUE_DATE.innerText = due
+
+		FIRST_ROW.append(COURSE_NAME);
+		FIRST_ROW.append(DUE_DATE);
+
+
+		var SECOND_ROW = document.createElement("td");
+
+		var TYPE = document.createElement("div");
+		TYPE.innerText = displayType;
+
+		SECOND_ROW.append(TYPE);
+		
+		
+
+        TR.append(ASSIGNMENT_NAME);
+        TR.append(FIRST_ROW);
+        TR.append(SECOND_ROW);
+
+        TBODY.append(TR);
+        TABLE.append(TBODY);
+
+		shadowDOM.append(TABLE);
+
+	}
+}
+
+
 
 class Schedule extends HTMLElement {
 	constructor() {
@@ -507,7 +614,7 @@ class Schedule extends HTMLElement {
 
 		shadowDOM.append(TABLE);  
 		
-		console.log(TABLE);
+		// console.log(TABLE);
 	}
 }
 

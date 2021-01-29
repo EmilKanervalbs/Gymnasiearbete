@@ -2,32 +2,46 @@ from flask import Flask, render_template, redirect, make_response, request
 
 import json, time, datetime
 
+from copy import deepcopy
+
 app = Flask(__name__, static_folder="web/static", static_url_path="", template_folder="web/templates")
 
 class Server():
 	def __init__(self):
-		testUser = {
-			"name":"BajsMannen",
-			"firstName":"Bajs",
-			"lastName":"Mannen",
-			"group":["test", "test2"],
-			"lessons":[]
-		}
-		self.users = []
-		self.users.append(testUser)
+		# testUser = {
+		# 	"name":"BajsMannen",
+		# 	"firstName":"Bajs",
+		# 	"lastName":"Mannen",
+		# 	"group":["test", "test2"],
+		# 	"lessons":[]
+		# }
+		# self.users = []
+		# self.users.append(testUser)
+
+		self.update()
+
+		self.content = json.loads(self.data)
+
+		self.users = self.content["users"]
+
 		self.userSessions = {"helo_wrold": self.users[0]}
 
-		with open("temp_resources/news.json", "r") as zzz:
-			test = zzz.read()
-
-		self.content = json.loads(test)
-
-		for user in self.users:
-			for group in user["group"]:
-				if group not in self.content["groups"]:
+		for user in self.users: # för varje användare
+			for group in user["group"]: # för varje grupp
+				if group not in self.content["groups"]: # ifall gruppen inte finns bland infromationen av grupper, skit i den
 					continue
-				for lesson in self.content["groups"][group]["courses"]:
-					user["lessons"].append(self.content["courses"][lesson])
+				for lesson in self.content["groups"][group]["courses"]: # för varje kurs
+					user["lessons"].append(self.content["courses"][lesson]) # lägg till den i användarens kurser
+	
+	def update(self):
+		with open("temp_resources/news.json", "r", encoding="utf-8") as zzz:
+			self.data = zzz.read()
+	
+	def getCachedUser(self, request):
+		if request.cookies.get("session") in self.userSessions:
+			return self.userSessions[request.cookies.get("session")]
+		else:
+			return None
 
 server = Server()
 
@@ -64,9 +78,11 @@ def assignments():
 def getnews(newsID=None):
 	user = None
 
-	if request.cookies.get("session") in server.userSessions:
+	# if request.cookies.get("session") in server.userSessions:
 
-		user = server.userSessions[request.cookies.get("session")]        
+	if user := server.getCachedUser(request):
+
+		# user = server.userSessions[request.cookies.get("session")]        
 		group = user["group"]
 		currentTime = time.time()
 
@@ -103,18 +119,24 @@ def getnews(newsID=None):
 					return news
 
 	print("---------------------------------nope")
-	return '{"news":["bajs"]}'
+	# return '{"news":["bajs"]}'
 
 @app.route("/getuser")
 def getuser():
-	if request.cookies.get("session") in server.userSessions:
-		return server.userSessions[request.cookies.get("session")]
+
+	if user := server.getCachedUser(request):
+
+		userCopy = deepcopy(user)
+
+		for result in userCopy["results"]:
+			result["course"] = server.content["courses"][result["course"]]["displayName"]
+			
+		return userCopy
 
 @app.route("/getassignments")
 def getassignments():
 	print("requested assignments")
-	if request.cookies.get("session") in server.userSessions:
-		user = server.userSessions[request.cookies.get("session")]
+	if user := server.getCachedUser(request):
 		assignments = []
 
 		currentTime = time.time()
@@ -148,7 +170,10 @@ def getschedule():
 
 		return lessons
 				
-
+@app.route("/getresults")
+def getresults():
+	if user := server.getCachedUser(request):
+		return user["results"]
 
 
 
