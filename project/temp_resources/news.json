@@ -55,6 +55,34 @@
 		"MATMAT05" : {
 			"code" : "MATMAT05",
 			"displayName" : "Matematik 5"
+		},
+		"GYARTE" : {
+			"code" : "GYARTE",
+			"displayName" : "Gymnasiearbete"
+		},
+		"IDRIDR01" : {
+			"code" : "IDRIDR01",
+			"displayName" : "Idrott 1"
+		},
+		"KEMKEM01" : {
+			"code" : "KEMKEM01",
+			"displayName" : "Kemi 1"
+		},
+		"PRRPRR02" : {
+			"code" : "PRRPRR02",
+			"displayName" : "Programmering 2"
+		},
+		"WEUWEB02" : {
+			"code" : "WEUWEB02",
+			"displayName" : "Webbutveckling 2"
+		},
+		"HISHIS01a1" : {
+			"code" : "HISHIS01a1",
+			"displayName" : "Historia 1a1"
+		},
+		"RELREL01" : {
+			"code" : "RELREL01",
+			"displayName" : "Religion 1"
 		}
 	},
 	"schedule": {
@@ -217,9 +245,9 @@
 			"results" : [
 				{
 					"course" : "WEBWES01",
-					"name" : "ff",
+					"name" : "gg",
 					"type" : "assignment",
-					"time" : 1609455599,
+					"time" : 1612051200,
 					"comment" : "poo poo",
 					"grade" : "F"
 				}

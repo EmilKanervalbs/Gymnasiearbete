@@ -115,7 +115,14 @@ var getUser = async () => { // dels tar den user och dels tar den resultaten
 	});
 
 	user.results.forEach((result) => {
+		console.log(new Date().getTime());
+		console.log((result.time + 2678400) * 1000);
+
 		// HÄÄÄÄÄÄÄÄÄR fixa att den inte visar för gamla resultat
+		if (new Date().getTime() > (result.time + 2678400) * 1000) {
+			return;
+		}
+
 
 		let el = document.createElement("results-element"); // name, course, type, due
 		el.setAttribute("name", result.name);
@@ -243,7 +250,7 @@ var getSchedule = async () => {
 		weekday = 0
 	}
 
-	// weekday = 4;
+	// weekday = 2;
 	// console.log("weekday: " + weekday);
 	// console.log(schedule["normal"][weekday]);
 
@@ -258,6 +265,8 @@ var getSchedule = async () => {
 		}
 	}
 
+	// koden nedanför är enkel insertion sort med O(n^2)
+	// koden arbetar dag för dag, så först idag, följt av imorgon
 	for (let i = 0; i < schedule["normal"].length; i++) { // loopar genom alla dagar
 
 		for (let j = 0; j < schedule["normal"][weekday].length;) { // loopar genom alla lektioner
@@ -265,7 +274,7 @@ var getSchedule = async () => {
 			let earliestIndex = 0;
 			for (let k = 0; k < schedule["normal"][weekday].length; k++) {
 
-				if (schedule["normal"][weekday][k].startTime < schedule["normal"][weekday][earliestIndex].startTime) {
+				if (schedule["normal"][weekday][k].startTime < schedule["normal"][weekday][earliestIndex].startTime) { // hittar den tidigaste lektionen
 					earliestIndex = k;
 					
 				}
@@ -273,15 +282,15 @@ var getSchedule = async () => {
 
 			let x = schedule["normal"][weekday][earliestIndex]
 			x.weekday = weekday;
-			console.log(schedule["normal"][weekday].splice(earliestIndex, 1));
-			fullSchedule.push(x);
+			console.log(schedule["normal"][weekday].splice(earliestIndex, 1)); // tar bort den tidigaste lektionen
+			fullSchedule.push(x); // sätter den tidigaste lektionen
 		}
 
 		schedule["normal"][weekday].forEach(x => {
 			
 		});
 
-		weekday = ++weekday % 5;
+		weekday = ++weekday % 5; // kommer ärligt talat inte ihåg varför ++ är prefix här, kanske bara "varför inte"?
 	}	
 
 	console.log(fullSchedule);
@@ -306,13 +315,34 @@ var getSchedule = async () => {
 			el.setAttribute("displayDay", "");
 		}
 
-		if (i == 0 || lesson.startTime == fullSchedule[0].startTime && lesson.weekday == fullSchedule[0].weekday) { //kollar ifall två lektioner börjar samtidigt
+		// bestämmer om lektionen hamnar i "nästa/nuvarande lektion" eller "kommande lektioner"
+		// ifall det är den första lektionen hamnar den alltid i "nästa"
+		// ifall någon annan lektion börjar på samma dag som den första, eller har börjat hamnar den i nuvarande
+		if (i == 0 || (lesson.startTime == fullSchedule[0].startTime || lesson.startTime < currentTime) && lesson.weekday == fullSchedule[0].weekday) {
 			scheduleRoots[0].appendChild(el); // lägg till lektioonen i "nästa lektion"-sektionen
 			continue;
 		}
 
 		scheduleRoots[1].appendChild(el); // lägg till lektionen i "kommande lektioner"-sektionen
 	}
+
+	scheduleRoots[0].childNodes.forEach((el) => {
+		if (el.nodeType != 1) {
+			return;
+		}
+
+		let lessonStart = el.getAttribute("start");
+		let lessonWeekday = el.getAttribute("weekday");
+
+		if (lessonStart <= currentTime && lessonWeekday == trueWeekday) {
+			let text = "Nuvarande lektion";
+			if (scheduleRoots[0].childElementCount > 1) {
+				text += "er";
+			}
+
+			scheduleRoots[0].parentElement.querySelector("h3").innerText = text;
+		}
+	});
 	
 	window.customElements.define("schedule-element", Schedule);
 	
@@ -630,7 +660,7 @@ document.getElementById("news").addEventListener("click", async (e) => { // ifal
         POPUP.querySelector("h3").innerText = "Av: " + news.sender;
         POPUP.querySelector("p").innerText = news.content;
         
-        let date = new Date(news.startDate);
+        let date = new Date(news.startDate * 1000);
         // date.setTime(news.startDate);
         POPUP.querySelector("h4").innerText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${lengthen(date.getHours())}:${lengthen(date.getMinutes())}`
 

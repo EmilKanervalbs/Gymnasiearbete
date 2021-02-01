@@ -20,7 +20,7 @@ class Server():
 
 		self.update()
 
-		self.content = json.loads(self.data)
+		# self.content = json.loads(self.data)
 
 		self.users = self.content["users"]
 
@@ -36,6 +36,7 @@ class Server():
 	def update(self):
 		with open("temp_resources/news.json", "r", encoding="utf-8") as zzz:
 			self.data = zzz.read()
+			self.content = json.loads(self.data)
 	
 	def getCachedUser(self, request):
 		if request.cookies.get("session") in self.userSessions:
@@ -168,7 +169,15 @@ def getschedule():
 			for i in range(5):
 				lessons["normal"][i] += server.content["schedule"][group]["normal"][i]
 
-		return lessons
+		lessonsCopy = deepcopy(lessons) # kopia för att ändra namnen på kurserna
+
+		for day in lessonsCopy["normal"]:
+			for lesson in day:
+				try: # Säkerhet ifall det skulle råka vara så att den inte hittar namnet på kursen
+					lesson["course"] = server.content["courses"][lesson["course"]]["displayName"]
+				except KeyError:
+					print("KEYERROR LESSON")
+		return lessonsCopy
 				
 @app.route("/getresults")
 def getresults():
@@ -181,8 +190,5 @@ def getresults():
 # dev route för att slippa starta om servern när man vill läsa om "databasen" (legit en .json fil)
 @app.route("/update")
 def update():
-	with open("temp_resources/news.json", "r") as zzz:
-			test = zzz.read()
-
-	server.content = json.loads(test)
+	server.update()
 	return redirect("/")
