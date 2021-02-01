@@ -290,7 +290,8 @@ var getSchedule = async () => {
 			
 		});
 
-		weekday = ++weekday % 5; // kommer ärligt talat inte ihåg varför ++ är prefix här, kanske bara "varför inte"?
+		weekday = ++weekday % 5; // ++ före istället för efter då ++weekday % 5 är lika med (weekday + 1) % 5
+								// istället för weekday++ % 5 som är lika med weekday % 5
 	}	
 
 	console.log(fullSchedule);
@@ -318,7 +319,11 @@ var getSchedule = async () => {
 		// bestämmer om lektionen hamnar i "nästa/nuvarande lektion" eller "kommande lektioner"
 		// ifall det är den första lektionen hamnar den alltid i "nästa"
 		// ifall någon annan lektion börjar på samma dag som den första, eller har börjat hamnar den i nuvarande
-		if (i == 0 || (lesson.startTime == fullSchedule[0].startTime || lesson.startTime < currentTime) && lesson.weekday == fullSchedule[0].weekday) {
+		// hamnar inte i nästa/nuvarande ifall det inte samma dag
+		if (i == 0 || 
+			(lesson.startTime == fullSchedule[0].startTime || lesson.startTime < currentTime) && 
+			lesson.weekday == fullSchedule[0].weekday && lesson.weekday == trueWeekday)
+			{
 			scheduleRoots[0].appendChild(el); // lägg till lektioonen i "nästa lektion"-sektionen
 			continue;
 		}

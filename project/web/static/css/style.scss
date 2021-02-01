@@ -296,12 +296,17 @@ table.newstable {
                 font-size: 1.1em;
                 border-bottom: none;
                 border-top-left-radius: 4px;
-                border-top-right-radius: 4px;
+				border-top-right-radius: 4px;
+				padding-top: 0.1rem;
             }
 
             td {
-                border-top: none;
-                padding-bottom: 0.2rem;
+				border-top: none;
+				&:last-child {
+					padding-bottom: 0.2rem;
+
+					// KOLLA HÄRÄ ÄRÄÄR ÄRÄR Ä RÄR ÄR ÄR ÄR Ä RÄR ÄR ÄRÄ ÄR ÄR ÄR Ä RÄ RÄR ÄRÄ R
+				}
                 // border-bottom: 1px solid rgba(0, 0, 0, 0.5);
                 // margin-bottom: 0.2rem;
 
@@ -327,7 +332,8 @@ table.newstable {
 
             &:nth-child(2n + 1) {
                 th, td {
-                    background-color: #F8F8F8;
+                    // background-color: #F8F8F8;
+                    background-color: #FBFBFB;
 
                 }
             }
@@ -482,27 +488,33 @@ div.popup-background {
         display: flex;
         justify-content: space-around;
         div.popup-overlay {
-            margin-top: 100px;
+            margin-top: 50px;
             padding: 14px;
-            border-radius: 2rem;
-            width: 500px;
-            height: 500px;
-            background-color: white;
+            border-radius: 1.5rem;
+            width: 35%;
+            height: 80vh;
+			background-color: white;
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
             .title-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                div h3, div h4 {
-                    text-align: right;
-                }
+				text-align: center;
+                // display: grid;
+                // grid-template-columns: 1fr 1fr;
+                // div h3, div h4 {
+                //     text-align: right;
+                // }
             }
             h2 {
                 font-weight: bold;
                 padding-bottom: 5px;
                 font-size: 2rem;
-            }
+			}
+			h3, h4 {
+				font-size: 0.8rem;
+			}
 
             p {
-                font-size: 0.8rem;
+				margin-top: 0.5rem;
+                font-size: 1rem;
             }
         }
     }

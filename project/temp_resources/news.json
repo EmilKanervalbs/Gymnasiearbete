@@ -29,7 +29,19 @@
             "endDate":16076819400,
             "sender":"rektor",
             "newsid":2
-        }
+		},{
+            "title":"ska inte finnas",
+			"classes":["test2"],
+			"content" : "yoooo \n test test \n \n \n test",
+            "category":"",
+            "startDate":0,
+            "endDate":16076819400,
+            "sender":"rektor",
+            "newsid":3
+		}
+		
+
+		
 	],
 	"groups" : {
 		"test" : {
@@ -121,8 +133,15 @@
 					},
 					{
 						"course":"GYARTE",
-						"startTime" : 800,
-						"endTime" : 900,
+						"startTime" : 765,
+						"endTime" : 870,
+						"exceptForDays" : [],
+						"room" : "Sal 14 Litet"
+					},
+					{
+						"course" : "KEMKEM01",
+						"startTime" : 880,
+						"endTime" : 990,
 						"exceptForDays" : [],
 						"room" : "Sal 14 Litet"
 					}
@@ -240,7 +259,7 @@
 			"name":"BajsMannen",
 			"firstName":"Bajs",
 			"lastName":"Mannen",
-			"group":["test", "test2"],
+			"group":["test"],
 			"lessons":[],
 			"results" : [
 				{

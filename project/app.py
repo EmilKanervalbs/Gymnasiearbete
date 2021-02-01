@@ -8,19 +8,7 @@ app = Flask(__name__, static_folder="web/static", static_url_path="", template_f
 
 class Server():
 	def __init__(self):
-		# testUser = {
-		# 	"name":"BajsMannen",
-		# 	"firstName":"Bajs",
-		# 	"lastName":"Mannen",
-		# 	"group":["test", "test2"],
-		# 	"lessons":[]
-		# }
-		# self.users = []
-		# self.users.append(testUser)
-
 		self.update()
-
-		# self.content = json.loads(self.data)
 
 		self.users = self.content["users"]
 
@@ -35,55 +23,67 @@ class Server():
 	
 	def update(self):
 		with open("temp_resources/news.json", "r", encoding="utf-8") as zzz:
-			self.data = zzz.read()
-			self.content = json.loads(self.data)
+			data = zzz.read()
+			self.content = json.loads(data)
+			self.users = self.content["users"]
 	
 	def getCachedUser(self, request):
-		if request.cookies.get("session") in self.userSessions:
-			return self.userSessions[request.cookies.get("session")]
-		else:
-			return None
+		if request.cookies.get("session") in self.userSessions: # ifall sessioncookien kan återfinnas i sessions-saken
+			return self.userSessions[request.cookies.get("session")] # skicka tillbaka användaren associerad med den
 
 server = Server()
 
 @app.route("/")
 def index():
-    resp = make_response(redirect("/startpage"))
-    resp.set_cookie("session", "helo_wrold")
+    resp = make_response(redirect("/startpage")) # skapa en redirect
+    resp.set_cookie("session", "helo_wrold") # skapa en session cookie, låtsas som att man loggar in
     server.userSessions["helo_wrold"] = server.users[0]
-    return resp # gör så att cookies skapas här
+    return resp
 
-@app.route("/startpage")
+@app.route("/startpage/")
 def startpage():
-    return render_template("startsida.html", user=server.users[0])
+	if user := server.getCachedUser(request):
 
-@app.route("/schedule")
+	    return render_template("startsida.html", user=user) # skicka tillbaka användaren
+	
+	return "", 403
+
+@app.route("/schedule/")
 def schedule():
-    return "schema yes"
+	if user := server.getCachedUser(request):
+		print(user)
+		return "schema pog"
 
-@app.route("/news")
+	return "", 403
+
+@app.route("/news/")
 def news():
-    return "nyheter ooo"
+	if user := server.getCachedUser(request):
+		print(user)
 
-@app.route("/assignments")
+		return "nyheter ooo"
+
+	return "", 403
+
+@app.route("/assignments/")
 def assignments():
-    return "yeah no"
-    #sdsdddddddsdddsds
+	if user := server.getCachedUser(request):
+		print(user)
+
+		return "yeah no"
+    
+	return "", 403
 
 
 
 # content managaging saker
 
-@app.route("/getnews/", methods=["GET"])
-@app.route("/getnews/<newsID>", methods=["GET"])
+@app.route("/getnews/")
+@app.route("/getnews/<newsID>")
 def getnews(newsID=None):
-	user = None
-
-	# if request.cookies.get("session") in server.userSessions:
 
 	if user := server.getCachedUser(request):
 
-		# user = server.userSessions[request.cookies.get("session")]        
 		group = user["group"]
 		currentTime = time.time()
 
@@ -91,21 +91,22 @@ def getnews(newsID=None):
 			newsDelivery = {"news":[]}
 
 			for news in server.content["news"]:
-				if len(newsDelivery) > 5:
+				if len(newsDelivery) > 5: # begränsar sig till 5 nyheter i snabbvyn
 					break
-				elif not any(i in group for i in news["classes"]):
+				elif not any(i in group for i in news["classes"]): # om gruppen inte tillhör någon av klasserna en användare har
 					continue
-				elif news["startDate"] > currentTime or news["endDate"] < currentTime:
+				elif news["startDate"] > currentTime or news["endDate"] < currentTime: # begränsar till nyheter som gäller just nu
 					continue
 				else:
 					newsDelivery["news"].append(news.copy())
 
 			for news in newsDelivery["news"]:
-				oldContent = news["content"]
+				oldContent = news["content"].replace("\n", "")
 				newContent = ""
+				tolerance = 0 # en variabel för att hålla koll på newline statements
 				for i in range(len(oldContent)):
 					newContent += oldContent[i]
-					if i > 75:
+					if i > 75 + tolerance:
 						newContent += "..."
 						break
 				news["content"] = newContent
@@ -118,11 +119,10 @@ def getnews(newsID=None):
 				if news["newsid"] == newsID:
 					print("found news ID", newsID)
 					return news
+	
+	return "", 403
 
-	print("---------------------------------nope")
-	# return '{"news":["bajs"]}'
-
-@app.route("/getuser")
+@app.route("/getuser/")
 def getuser():
 
 	if user := server.getCachedUser(request):
@@ -133,8 +133,10 @@ def getuser():
 			result["course"] = server.content["courses"][result["course"]]["displayName"]
 			
 		return userCopy
+	
+	return "", 403
 
-@app.route("/getassignments")
+@app.route("/getassignments/")
 def getassignments():
 	print("requested assignments")
 	if user := server.getCachedUser(request):
@@ -143,30 +145,36 @@ def getassignments():
 		currentTime = time.time()
 
 		for assignment in server.content["assignments"]:
-			if assignment["time"] < currentTime:
+			if assignment["time"] < currentTime: # strunta i uppgifter som har förlöpt
 				continue
 			stop = True
+
 			for group in assignment["classes"]:
 				if group in user["group"]:
 					stop = False
 					break
 			if stop:
 				continue
-			assignment2 = assignment.copy()
-			assignment2["course"] = server.content["courses"][assignment2["course"]]["displayName"]
-			# print(assignment2)
-			assignments.append(assignment2)
+
+			assignmentCopy = assignment.copy()
+			assignmentCopy["course"] = server.content["courses"][assignmentCopy["course"]]["displayName"]
+
+			assignments.append(assignmentCopy)
 		
 		return {"assignments" : assignments}
+	
+	return "", 403
+	# ifall man inte har en valid session cookie, 403 FORBIDDEN
 
-@app.route("/getschedule")
+
+@app.route("/getschedule/")
 def getschedule():
-	if request.cookies.get("session") in server.userSessions:
-		user = server.userSessions[request.cookies.get("session")]
-		lessons = {"normal" : [[], [], [], [], []], "exceptions" : []}
-		# weekday = datetime.datetime.today().weekday()
+	if user := server.getCachedUser(request):
+
+		lessons = {"normal" : [[], [], [], [], []], "exceptions" : []} # Mall där alla unika scheman slås ihop till
+
 		for group in user["group"]:
-			for i in range(5):
+			for i in range(5): # lägger ihop alla scheman dag för dag, i = dag, grupp = unikt schema
 				lessons["normal"][i] += server.content["schedule"][group]["normal"][i]
 
 		lessonsCopy = deepcopy(lessons) # kopia för att ändra namnen på kurserna
@@ -176,19 +184,31 @@ def getschedule():
 				try: # Säkerhet ifall det skulle råka vara så att den inte hittar namnet på kursen
 					lesson["course"] = server.content["courses"][lesson["course"]]["displayName"]
 				except KeyError:
-					print("KEYERROR LESSON")
+					print("KEYERROR ON LESSON")
 		return lessonsCopy
-				
-@app.route("/getresults")
-def getresults():
-	if user := server.getCachedUser(request):
-		return user["results"]
+
+	return "", 403
+			
+# @app.route("/getresults")
+# def getresults():
+# 	if user := server.getCachedUser(request):
+# 		return user["results"]
+	
+# 	# return "", 403
+	
 
 
 
 
 # dev route för att slippa starta om servern när man vill läsa om "databasen" (legit en .json fil)
-@app.route("/update")
+@app.route("/update/")
 def update():
-	server.update()
-	return redirect("/")
+	if server.getCachedUser(request):
+		server.update()
+		return redirect("/")
+
+	return "", 403
+
+@app.errorhandler(404)
+def not_found(e):
+	return "idiota"
