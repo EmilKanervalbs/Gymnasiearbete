@@ -165,7 +165,7 @@
 					},
 					{
 						"course" : "KEMKEM01",
-						"startTime" : 845,
+						"startTime" : 825,
 						"endTime" : 885,
 						"exceptForDays" : [],
 						"room" : "Sal 14 Litet"

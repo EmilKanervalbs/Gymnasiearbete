@@ -21,11 +21,24 @@ setTimeout(() => {
     updateTime();
 }, 1000 - currentTime.getMilliseconds());
 
+var openPlanCreator = () => {
+	
+}
+
+var createPlan = (title, content) => {
+	console.log("create paln")
+	let el = document.createElement("plan-element");
+	el.setAttribute("title", title)
+	el.setAttribute("content", content)
+
+	document.getElementById("plans").querySelector("div").append(el);
+}
+
 var getWeekday = (x) => {
 	let y = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"];
 	console.log(x.getDay());
 	console.log(y[x.getDay()]);
-	console.log(y[5]); // fråga jens wtf
+	console.log(y[5]);
 	return y[x.getDay()];
 }
 
@@ -654,6 +667,73 @@ class Schedule extends HTMLElement {
 }
 
 
+class Plan extends HTMLElement {
+	static get observedAttributes() {
+        return ["title", "content"]
+    }
+    constructor() {
+        super();
+        var shadowDOM = this.attachShadow({
+            mode : "open"
+        });
+
+        var LINK = document.createElement("link")
+        LINK.setAttribute("rel", "stylesheet")
+        LINK.setAttribute("href", "/css/normalize.css")
+
+        var LINK2 = document.createElement("link")
+        LINK2.setAttribute("rel", "stylesheet")
+        LINK2.setAttribute("href", "/css/style.css")
+    
+        shadowDOM.appendChild(LINK);
+        shadowDOM.appendChild(LINK2);
+
+        var title = this.getAttribute("title");
+        var content = this.getAttribute("content");
+
+        var TABLE = document.createElement("table");
+        TABLE.className = "newstable";
+
+        var TBODY = document.createElement("tbody");
+		var TR = document.createElement("tr");
+		
+        var TITLE = document.createElement("th");
+        TITLE.innerText = title;
+
+        var CONTENT = document.createElement("td");
+		CONTENT.innerText = content;
+		
+		console.log(title);
+		console.log(content);
+		console.log(this.getAttribute("content"));
+
+
+
+        TR.append(TITLE);
+        TR.append(CONTENT);
+
+        TBODY.append(TR);
+        TABLE.append(TBODY)
+
+		shadowDOM.append(TABLE);   
+			
+	}
+	
+	attributeChangedCallback(name, oldValue, newValue) {
+		console.log(name);
+		switch(name) {
+			case "title":
+				this.shadowRoot.querySelector("table").querySelector("tbody").querySelector("tr").querySelector("th").innerText = newValue; 
+				break;
+			case "content":
+				this.shadowRoot.querySelector("table").querySelector("tbody").querySelector("tr").querySelector("td").innerText = newValue; 
+				break;
+		}
+	}
+}	
+
+window.customElements.define("plan-element", Plan);
+
 document.getElementById("news").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
 	console.log(e.target);
     if (e.target.nodeName == "NEWS-ELEMENT"){
@@ -716,4 +796,23 @@ document.getElementById("popup").addEventListener("click", e => {
         e.target.classList.remove("visible");
         return;
     }
+});
+
+
+document.getElementById("plan-input-submit-button").addEventListener("click", e => {
+	console.log("clicccccc")
+	let title = document.getElementById("plan-input-title").value;
+	let content = document.getElementById("plan-input-content").value;
+
+	console.log(title);
+	console.log(content);
+
+	createPlan(title, content);
+
+	document.getElementById("plan-popup").classList.remove("visible");
+});
+
+
+document.getElementById("open-create-plan-button").addEventListener("click", e => {
+
 });

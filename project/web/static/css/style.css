@@ -517,6 +517,76 @@ div.uppgifter h3 {
   font-size: 1rem;
 }
 
+#plans .boxcontent button {
+  width: 100%;
+  height: 2rem;
+  background-color: #F8F8F8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  -webkit-transition: background-color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out;
+  margin-bottom: 10px;
+}
+
+#plans .boxcontent button:hover {
+  background-color: #F0F0F0;
+}
+
+.plan-popup-overlay {
+  position: absolute;
+}
+
+.plan-popup-overlay .title-row {
+  margin-bottom: 1rem;
+}
+
+.plan-popup-overlay .plan-input-section .plan-input-section-row {
+  display: block;
+}
+
+.plan-popup-overlay .plan-input-section .plan-input-section-row input, .plan-popup-overlay .plan-input-section .plan-input-section-row textarea {
+  display: inline-block;
+  padding: 0.5rem;
+  margin: 5px;
+  border: solid 1px gray;
+  border-radius: 3px;
+  resize: none;
+}
+
+.plan-popup-overlay .plan-input-section .plan-input-section-row input.input-title, .plan-popup-overlay .plan-input-section .plan-input-section-row textarea.input-title {
+  background-color: black;
+}
+
+.plan-popup-overlay .plan-input-section .plan-input-section-row input.input-content, .plan-popup-overlay .plan-input-section .plan-input-section-row textarea.input-content {
+  width: calc(100% - 20px);
+  font-family: Arial;
+  height: 250px;
+}
+
+.plan-popup-overlay .plan-input-section .plan-input-section-row div {
+  display: inline-block;
+}
+
+.plan-popup-overlay .plan-input-submit {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: calc(100% - 20px);
+}
+
+.plan-popup-overlay .plan-input-submit button {
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 5vw;
+  border: none;
+  background-color: black;
+}
+
 #hiddenArrow {
   padding: 1rem;
   text-align: center;

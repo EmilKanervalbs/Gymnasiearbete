@@ -82,7 +82,34 @@
             </p>
 
         </div>
-    </div>
+	</div>
+	
+	<div class="popup-background visible" id="plan-popup">
+		<div class="popup-overlay plan-popup-overlay">
+			<div class="title-row">
+				<h2> Skapa planering </h2>
+			</div>
+
+			<div class="plan-input-section">
+
+				<div class="plan-input-section-row">
+					<input name="title" placeholder="Titel" type="text" class="input-title" id="plan-input-title">
+					<div id="plan-title-input-char-limit"> 500 </div>
+				</div>
+				<div class="plan-input-section-row">
+
+					<!-- <input name="content" placeholder="Kommentar" type="text" class="input-content"> -->
+					<textarea class="input-content" placeholder="Kommentar" id="plan-input-content"></textarea>
+					<div id="plan-content-input-char-limit"> 500 </div>
+				</div>
+
+			</div>
+			<div class="plan-input-submit">
+				<button id="plan-input-submit-button"> helo </button>
+			</div>
+
+		</div>
+	</div>
 
     <main>
         <section class="boxcontainer">
@@ -150,12 +177,13 @@
         </section>
 
         <section class="boxcontainer">
-            <div class="box">
+            <div class="box" id="plans">
                 <h2 class="boxtitle">
                     Planeringar
                 </h2>
                 <div class="boxcontent">
-
+					<button id="open-create-plan-button"> Skapa ny planering </button>
+					<plan-element title="hello" content="ok så yes påger koolt">
                 </div>
             </div>
         </section>  
