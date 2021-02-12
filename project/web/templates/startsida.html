@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+	<script src="{{ url_for('static', filename='js/index.js') }}" type="module"></script>
 </head>
 
 <body>
@@ -84,7 +86,7 @@
         </div>
 	</div>
 	
-	<div class="popup-background visible" id="plan-popup">
+	<div class="popup-background" id="plan-popup">
 		<div class="popup-overlay plan-popup-overlay">
 			<div class="title-row">
 				<h2> Skapa planering </h2>
@@ -93,19 +95,22 @@
 			<div class="plan-input-section">
 
 				<div class="plan-input-section-row">
-					<input name="title" placeholder="Titel" type="text" class="input-title" id="plan-input-title">
-					<div id="plan-title-input-char-limit"> 500 </div>
+					<input name="title" placeholder="Titel" type="text" class="input-title" id="plan-input-title" maxlength="20">
+					<div id="plan-title-input-char-counter"> 500 </div>
 				</div>
 				<div class="plan-input-section-row">
 
 					<!-- <input name="content" placeholder="Kommentar" type="text" class="input-content"> -->
-					<textarea class="input-content" placeholder="Kommentar" id="plan-input-content"></textarea>
-					<div id="plan-content-input-char-limit"> 500 </div>
+					<textarea class="input-content" placeholder="Kommentar" id="plan-input-content" maxlength="500"></textarea>
+					<div id="plan-content-input-char-counter"> 500 </div>
 				</div>
 
 			</div>
 			<div class="plan-input-submit">
-				<button id="plan-input-submit-button"> helo </button>
+				<button id="plan-input-submit-button"> Spara </button>
+				<button id="plan-input-delete-button"> Ta bort </button>
+			</div>
+			<div class="plan-input-delete">
 			</div>
 
 		</div>
@@ -122,38 +127,12 @@
 					<div class="scheduleHolder">
 
 					</div>
-				
-					<!-- <table class="newstable">
-                        <tr>
-                            <th>
-                                Svenska 3
-                            </th>
-                            <td>
-                                <div>
-                                    Sal 14 Litet 
-                                </div>
-                                <div>
-                                    12:00-13:25
-                                </div>
-                            </td>
-						</tr>
-						<schedule-element course="Svenska 3" start=600 end=660></schedule-element> -->
-                    </table>
 
 					<h3> Följande lektioner </h3>
 					<div class="scheduleHolder">
 
 					</div>
-                    <!-- <table class="newstable">
-                        <tr>
-                            <th>
-                                Nyhetstitel
-                            </th>
-                            <td>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, nisi!
-                            </td>
-                        </tr>
-                    </table> -->
+                    
                 </div>
             </div>
 		</section>
@@ -183,7 +162,6 @@
                 </h2>
                 <div class="boxcontent">
 					<button id="open-create-plan-button"> Skapa ny planering </button>
-					<plan-element title="hello" content="ok så yes påger koolt">
                 </div>
             </div>
         </section>  
@@ -238,7 +216,7 @@
         </div>
     </div> -->
 
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    
 </body>
 
 </html>
