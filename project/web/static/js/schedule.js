@@ -138,7 +138,7 @@ export var getSchedule = async () => {
 	}	
 
 	console.log(fullSchedule);
-	for (let i = 0; i < fullSchedule.length && i < 7; i++) { // for-loopen som visar upp schemat
+	for (let i = 0; i < fullSchedule.length && i < 6; i++) { // for-loopen som visar upp schemat
 		let lesson = fullSchedule[i]
 
 		let el = document.createElement("schedule-element"); // skapar elementet

@@ -94,6 +94,7 @@ export var openPlanCreator = (el) => {
 	document.getElementById("plan-popup").classList.add("visible");
 }
 
+
 export var createPlan = (title, content) => {
 	if (currentPlanRoot) {
 		currentPlanRoot.setAttribute("title", title)
@@ -113,10 +114,13 @@ export var createPlan = (title, content) => {
 	}
 }
 
+
 export var deletePlan = () => {
 	if (currentPlanRoot) { // ifall man har valt en, kör på, ifall man inte valt en kan man strunta i det.
+		
 		currentPlanRoot.remove();
 		currentPlanRoot = null;
+		
 	}
 	document.getElementById("plan-popup").classList.remove("visible");
 }

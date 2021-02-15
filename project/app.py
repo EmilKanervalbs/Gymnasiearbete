@@ -14,22 +14,26 @@ class Server():
 
 		self.userSessions = {"helo_wrold": self.users[0]}
 
-		for user in self.users: # för varje användare
-			for group in user["group"]: # för varje grupp
-				if group not in self.content["groups"]: # ifall gruppen inte finns bland infromationen av grupper, skit i den
-					continue
-				for lesson in self.content["groups"][group]["courses"]: # för varje kurs
-					user["lessons"].append(self.content["courses"][lesson]) # lägg till den i användarens kurser
 	
 	def update(self):
 		with open("temp_resources/news.json", "r", encoding="utf-8") as zzz:
 			data = zzz.read()
 			self.content = json.loads(data)
 			self.users = self.content["users"]
+		
+		self.initUsers()
 	
 	def getCachedUser(self, request):
 		if request.cookies.get("session") in self.userSessions: # ifall sessioncookien kan återfinnas i sessions-saken
 			return self.userSessions[request.cookies.get("session")] # skicka tillbaka användaren associerad med den
+	
+	def initUsers(self):
+		for user in self.users: # för varje användare
+			for group in user["group"]: # för varje grupp
+				if group not in self.content["groups"]: # ifall gruppen inte finns bland infromationen av grupper, skit i den
+					continue
+				for lesson in self.content["groups"][group]["courses"]: # för varje kurs
+					user["lessons"].append(self.content["courses"][lesson]) # lägg till den i användarens kurser
 
 server = Server()
 
@@ -131,7 +135,6 @@ def getuser():
 
 		for result in userCopy["results"]:
 			result["course"] = server.content["courses"][result["course"]]["displayName"]
-			
 		return userCopy
 	
 	return "", 403

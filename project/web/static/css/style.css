@@ -1,8 +1,13 @@
+html {
+  color: #D0D0D0;
+}
+
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #303131;
+  font-family: Verdana;
   font-size: 14px;
-  background-image: -webkit-gradient(linear, right bottom, left top, from(#8fd1f1), to(#63a9ee));
-  background-image: linear-gradient(to top left, #8fd1f1, #63a9ee);
+  background-image: -webkit-gradient(linear, right bottom, left top, from(#303131), to(#383939));
+  background-image: linear-gradient(to top left, #303131, #383939);
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -19,7 +24,8 @@ body {
 }
 
 .topbar ul li {
-  background-color: #F8F8F8;
+  display: inline;
+  background-color: #404141;
   padding: 1.5em 0;
   height: 3rem;
   float: left;
@@ -29,7 +35,7 @@ body {
 }
 
 .topbar ul li:hover {
-  background-color: #ebebeb;
+  background-color: #383939;
 }
 
 .topbar ul li.triangle {
@@ -54,11 +60,15 @@ body {
   margin-top: 0.5rem;
 }
 
+.topbar ul li ul.dropbar a:hover {
+  cursor: pointer;
+}
+
 .topbar ul li ul.dropbar a li {
   position: relative;
   margin: 0 -0.25rem;
   z-index: 10;
-  background-color: #f8f8f8;
+  background-color: #383939;
   border-radius: 0.5rem;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
           box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
@@ -67,7 +77,7 @@ body {
 }
 
 .topbar ul li ul.dropbar a li.log-out-button {
-  background-color: red;
+  background-color: #BB0000;
 }
 
 .topbar ul li:hover ul.dropbar {
@@ -80,7 +90,7 @@ body {
 .topbar ul li:hover ul.dropbar a:hover li {
   -webkit-transition: background-color 100ms ease-in-out;
   transition: background-color 100ms ease-in-out;
-  background-color: #dfdfdf;
+  background-color: #313232;
 }
 
 .topbar ul li:hover ul.dropbar a:hover li.log-out-button {
@@ -217,6 +227,30 @@ body {
           animation-delay: 1350ms;
 }
 
+#time, #name {
+  background-color: #383939;
+}
+
+#triangle {
+  position: relative;
+  background-color: transparent;
+  padding: 0;
+  width: 0;
+  height: 0;
+  border-right: 4em solid #404141;
+  border-bottom: 4em solid transparent;
+}
+
+#triangle2 {
+  position: relative;
+  background-color: transparent;
+  padding: 0;
+  width: 0;
+  height: 0;
+  border-right: 4em solid #383939;
+  border-bottom: 4em solid #404141;
+}
+
 li.tooltip-parent span.tooltip {
   opacity: 0;
 }
@@ -248,30 +282,6 @@ a:visited, a:hover, a:active, a {
   color: inherit;
 }
 
-#triangle {
-  position: relative;
-  background-color: transparent;
-  padding: 0;
-  width: 0;
-  height: 0;
-  border-right: 4em solid #F8F8F8;
-  border-bottom: 4em solid transparent;
-}
-
-#triangle2 {
-  position: relative;
-  background-color: transparent;
-  padding: 0;
-  width: 0;
-  height: 0;
-  border-right: 4em solid #ebebeb;
-  border-bottom: 4em solid #F8F8F8;
-}
-
-#time, #name {
-  background-color: #ebebeb;
-}
-
 /*
 nav a:hover {
     background-color: #DD0000;
@@ -301,7 +311,7 @@ main section {
 .box {
   display: block;
   height: calc(50vh - 8 * 14px);
-  background-color: #FFFFFF;
+  background-color: #2B2B2B;
   width: calc(100% - 6 * 14px);
   max-width: 325px;
   padding: 14px;
@@ -322,6 +332,7 @@ main section {
   margin: 1rem 0 0;
   margin-top: 0.5rem;
   overflow: auto;
+  overflow: hidden;
 }
 
 .boxcontent.schema h3 {
@@ -329,6 +340,7 @@ main section {
   font-size: 1rem;
   padding-left: 5px;
   padding-bottom: 3px;
+  border-bottom: 1px solid #404040;
 }
 
 .boxcontent.schema h3:first-child {
@@ -337,7 +349,16 @@ main section {
 
 table.newstable {
   width: 100%;
-  margin-top: 0.2rem;
+  margin-top: 6px;
+  color: #A0A0A0;
+  -webkit-animation-name: pop-in;
+          animation-name: pop-in;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-duration: 500ms;
+          animation-duration: 500ms;
 }
 
 table.newstable tbody {
@@ -351,19 +372,20 @@ table.newstable tbody tr {
 table.newstable tbody tr th, table.newstable tbody tr td {
   display: block;
   text-align: left;
-  padding: 0 0.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.1rem 0.2rem;
+  border: 1px solid rgba(80, 80, 80, 0.5);
   width: calc(100% - 0.5rem);
 }
 
 table.newstable tbody tr th {
   font-weight: bold;
-  padding-bottom: 2px;
-  font-size: 1.1em;
+  padding-bottom: 4px;
+  font-size: 0.9rem;
   border-bottom: none;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   padding-top: 0.1rem;
+  color: white;
 }
 
 table.newstable tbody tr td {
@@ -389,12 +411,33 @@ table.newstable tbody tr td:not(:last-child) {
   border-bottom: none;
 }
 
-table.newstable tbody tr:nth-child(2n) th, table.newstable tbody tr:nth-child(2n) td {
-  background-color: #F0F0F0;
+table.newstable tbody tr th, table.newstable tbody tr td {
+  background-color: #383838;
+  -webkit-transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
 }
 
-table.newstable tbody tr:nth-child(2n + 1) th, table.newstable tbody tr:nth-child(2n + 1) td {
-  background-color: #FBFBFB;
+table.newstable tbody tr:hover th, table.newstable tbody tr:hover td {
+  background-color: #303030;
+  color: white;
+}
+
+@-webkit-keyframes pop-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .box-bottom {
@@ -476,17 +519,18 @@ div.uppgifter h3 {
 #plans .boxcontent button {
   width: 100%;
   height: 2rem;
-  background-color: #F8F8F8;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #484848;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   -webkit-transition: background-color 100ms ease-in-out;
   transition: background-color 100ms ease-in-out;
   margin-bottom: 10px;
   z-index: 100;
+  color: #D0D0D0;
 }
 
 #plans .boxcontent button:hover {
-  background-color: #F0F0F0;
+  background-color: #505050;
   cursor: pointer;
 }
 
@@ -506,9 +550,12 @@ div.uppgifter h3 {
   display: inline-block;
   padding: 0.5rem;
   margin: 5px;
-  border: solid 1px gray;
+  border: solid 1px rgba(0, 0, 0, 0.5);
   border-radius: 3px;
   resize: none;
+  background-color: #404040;
+  color: #D0D0D0;
+  outline: none;
 }
 
 .plan-popup-overlay .plan-input-section .plan-input-section-row input.input-title, .plan-popup-overlay .plan-input-section .plan-input-section-row textarea.input-title {
@@ -562,6 +609,15 @@ div.uppgifter h3 {
   background-image: linear-gradient(to top left, #264250, #1db34a);
 }
 
+.plan-popup-overlay .plan-input-submit button#plan-input-submit-button:hover {
+  -webkit-transition: -webkit-box-shadow 100ms ease-in-out;
+  transition: -webkit-box-shadow 100ms ease-in-out;
+  transition: box-shadow 100ms ease-in-out;
+  transition: box-shadow 100ms ease-in-out, -webkit-box-shadow 100ms ease-in-out;
+  -webkit-box-shadow: inset -10px -10000px rgba(0, 0, 0, 0.1);
+          box-shadow: inset -10px -10000px rgba(0, 0, 0, 0.1);
+}
+
 .plan-popup-overlay .plan-input-delete {
   position: absolute;
   bottom: 0;
@@ -576,6 +632,10 @@ div.uppgifter h3 {
   background-color: red;
   cursor: pointer;
   float: right;
+}
+
+button {
+  outline: none;
 }
 
 input.invalid-input, textarea.invalid-input {
@@ -607,10 +667,11 @@ div.popup-background {
   width: 100vw;
   height: 100vh;
   position: absolute;
+  z-index: 1000;
 }
 
 div.popup-background.visible {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -622,9 +683,9 @@ div.popup-background.visible div.popup-overlay {
   margin-top: 50px;
   padding: 14px;
   border-radius: 1.5rem;
-  width: 35%;
+  width: 700px;
   height: 80vh;
-  background-color: white;
+  background-color: #303030;
   -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
@@ -688,6 +749,19 @@ div.popup-background.visible div.popup-overlay p {
   }
   .topbar ul #time {
     display: none;
+  }
+}
+
+@media (min-width: 1921px) and (min-height: 1080px) {
+  html {
+    font-size: 1.5rem;
+  }
+  main {
+    width: 1920px;
+    margin: auto;
+  }
+  .box {
+    max-width: 500px;
   }
 }
 /*# sourceMappingURL=style.css.map */
