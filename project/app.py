@@ -140,31 +140,40 @@ def getuser():
 	return "", 403
 
 @app.route("/getassignments/")
-def getassignments():
+@app.route("/getassignments/<assignmentID>")
+def getassignments(assignmentID=None):
 	print("requested assignments")
 	if user := server.getCachedUser(request):
-		assignments = []
+		print(assignmentID)
+		if assignmentID:
+			assignmentID = int(assignmentID)
+			print("assignment requiested by id")
+			for assignment in server.content["assignments"]:
+				if assignment["id"] == assignmentID:
+					return assignment
+		else:
+			assignments = []
 
-		currentTime = time.time()
+			currentTime = time.time()
 
-		for assignment in server.content["assignments"]:
-			if assignment["time"] < currentTime: # strunta i uppgifter som har förlöpt
-				continue
-			stop = True
+			for assignment in server.content["assignments"]:
+				if assignment["time"] < currentTime: # strunta i uppgifter som har förlöpt
+					continue
+				stop = True
 
-			for group in assignment["classes"]:
-				if group in user["group"]:
-					stop = False
-					break
-			if stop:
-				continue
+				for group in assignment["classes"]:
+					if group in user["group"]:
+						stop = False
+						break
+				if stop:
+					continue
 
-			assignmentCopy = assignment.copy()
-			assignmentCopy["course"] = server.content["courses"][assignmentCopy["course"]]["displayName"]
+				assignmentCopy = assignment.copy()
+				assignmentCopy["course"] = server.content["courses"][assignmentCopy["course"]]["displayName"]
 
-			assignments.append(assignmentCopy)
-		
-		return {"assignments" : assignments}
+				assignments.append(assignmentCopy)
+			
+			return {"assignments" : assignments}
 	
 	return "", 403
 	# ifall man inte har en valid session cookie, 403 FORBIDDEN

@@ -28,6 +28,7 @@ export var getAssignments = async () => {
 		element.setAttribute("name", x.name);
 		element.setAttribute("course", x.course);
 		element.setAttribute("type", x.type);
+		element.setAttribute("id", x.id);
 
 		let parentElement;
 
@@ -66,6 +67,13 @@ export var getAssignments = async () => {
 
 	window.customElements.define("assignment-element", Assignment)
 };
+
+export var getAssignmentById = async (id) => {
+	assignment = await fetch("./getassignments/" + id).then(r => {
+		return r.json(); // härärärä äär ärää är ärärärärärärärärärärärärärärärärärärärä
+	})
+	return assignment;
+}
 
 class Assignment extends HTMLElement {
 	constructor() {

@@ -2,7 +2,8 @@ import {getSchedule} from "./schedule.js"
 import {Plan, openPlanCreator, createPlan, deletePlan} from "./plan.js"
 import {getNews, getNewsByID} from "./news.js"
 import {getUser} from "./user.js";
-import {getAssignments} from "./assignments.js"
+import {getAssignments, getAssignmentById} from "./assignments.js"
+import {popup} from "./popup.js"
 
 var TIME = document.getElementById("time");
 
@@ -35,8 +36,6 @@ getAssignments();
 
 getSchedule();
 
-
-
 window.customElements.define("plan-element", Plan);
 
 document.getElementById("news").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
@@ -53,14 +52,15 @@ document.getElementById("news").addEventListener("click", async (e) => { // ifal
         let date = new Date(news.startDate * 1000);
         POPUP.querySelector("h4").innerText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${lengthen(date.getHours())}:${lengthen(date.getMinutes())}`
 
-
-        POPUP.classList.add("visible");
+		popup.open(POPUP);
     }
 });
 
 document.getElementById("assignments").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
 	console.log(e.target);
     if (e.target.nodeName == "ASSIGNMENT-ELEMENT"){
+		let assignment = await getAssignmentById(e.target.getAttribute("id"));
+		console.log("xasdasdsadsad" + assignment)
         const POPUP = document.getElementById("popup");
 		let target = e.target;
 		
@@ -71,8 +71,7 @@ document.getElementById("assignments").addEventListener("click", async (e) => { 
         
 		POPUP.querySelector("h4").innerText = target.getAttribute("due")
 
-        POPUP.classList.add("visible");
-
+        popup.open(POPUP);
     }
 });
 
@@ -88,24 +87,24 @@ document.getElementById("exams").addEventListener("click", async (e) => { // ifa
         
 		POPUP.querySelector("h4").innerText = target.getAttribute("due")
 
-        POPUP.classList.add("visible");
-
+		popup.open(POPUP);
     }
 });
 
-document.getElementById("popup").addEventListener("click", e => {
+document.getElementById("popup").addEventListener("click", e => { // ifall man clickar på bakgrunden till den
     if (e.target.id == "popup") {
-        e.target.classList.remove("visible");
+		popup.close(e.target);
     }
 });
 
 document.getElementById("plan-popup").addEventListener("click", e => {
     if (e.target.id == "plan-popup") {
-        e.target.classList.remove("visible");
+        popup.close(e.target);
     }
 });
 
 document.getElementById("plan-input-submit-button").addEventListener("click", e => {
+	const POPUP = document.getElementById("plan-popup")
 	let title = document.getElementById("plan-input-title").value;
 	let content = document.getElementById("plan-input-content").value;
 
@@ -123,12 +122,12 @@ document.getElementById("plan-input-submit-button").addEventListener("click", e 
 
 	if (invalid) return;
 
-	console.log(title);
-	console.log(content);
+	// console.log(title);
+	// console.log(content);
 
 	createPlan(title, content);
 
-	document.getElementById("plan-popup").classList.remove("visible");
+	popup.close(POPUP);
 });
 
 

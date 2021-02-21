@@ -3,11 +3,11 @@ html {
 }
 
 body {
-  background-color: #303131;
+  background-color: #202121;
   font-family: Verdana;
   font-size: 14px;
-  background-image: -webkit-gradient(linear, right bottom, left top, from(#303131), to(#383939));
-  background-image: linear-gradient(to top left, #303131, #383939);
+  background-image: -webkit-gradient(linear, right bottom, left top, from(#202121), to(#282929));
+  background-image: linear-gradient(to top left, #202121, #282929);
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -668,6 +668,7 @@ div.popup-background {
   height: 100vh;
   position: absolute;
   z-index: 1000;
+  overflow: hidden;
 }
 
 div.popup-background.visible {
@@ -707,6 +708,64 @@ div.popup-background.visible div.popup-overlay h3, div.popup-background.visible 
 div.popup-background.visible div.popup-overlay p {
   margin-top: 0.5rem;
   font-size: 1rem;
+}
+
+div.popup-background.animate-in {
+  -webkit-animation: fade-in 250ms linear 0ms 1;
+          animation: fade-in 250ms linear 0ms 1;
+}
+
+div.popup-background.animate-in .popup-overlay {
+  -webkit-animation: popup-animation 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 0ms 1;
+          animation: popup-animation 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 0ms 1;
+}
+
+div.popup-background.animate-out {
+  animation: fade-in 250ms linear 250ms 1 reverse forwards;
+}
+
+div.popup-background.animate-out .popup-overlay {
+  animation: popup-animation 500ms cubic-bezier(0.075, 0.82, 0.165, 1) 0ms 1 reverse forwards;
+}
+
+@-webkit-keyframes popup-animation {
+  0% {
+    -webkit-transform: translate(0, 100vh);
+            transform: translate(0, 100vh);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes popup-animation {
+  0% {
+    -webkit-transform: translate(0, 100vh);
+            transform: translate(0, 100vh);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 @media (max-width: 1000px) {

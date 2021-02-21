@@ -1,3 +1,5 @@
+import {popup} from "./popup.js"
+
 export class Plan extends HTMLElement {
 	static get observedAttributes() {
         return ["title", "content"]
@@ -91,7 +93,7 @@ export var openPlanCreator = (el) => {
 	}
 	document.getElementById("plan-content-input-char-counter").innerText = 500 - document.getElementById("plan-input-content").value.length;
 	
-	document.getElementById("plan-popup").classList.add("visible");
+	popup.open(document.getElementById("plan-popup"));
 }
 
 
@@ -122,5 +124,5 @@ export var deletePlan = () => {
 		currentPlanRoot = null;
 		
 	}
-	document.getElementById("plan-popup").classList.remove("visible");
+	popup.close(document.getElementById("plan-popup"));
 }

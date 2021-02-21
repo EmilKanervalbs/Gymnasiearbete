@@ -211,7 +211,8 @@
 			"type" : "assignment",
 			"time" : 16083072000,
 			"description" : "poo poo",
-			"classes":["test"]
+			"classes":["test"],
+			"id":0
 		},
 		{
 			"course" : "WEBWES01",
@@ -219,7 +220,8 @@
 			"type" : "verbal",
 			"time" : 16083072000,
 			"description" : "poo poo",
-			"classes":["test"]
+			"classes":["test"],
+			"id":1
 		},
 		{
 			"course" : "WEBWES01",
@@ -227,7 +229,8 @@
 			"type" : "exam",
 			"time" : 16083072000,
 			"description" : "poo poo",
-			"classes":["test"]
+			"classes":["test"],
+			"id":2
 		},
 		{
 			"course" : "WEBWES01",
@@ -235,7 +238,8 @@
 			"type" : "exam",
 			"time" : 16094555099,
 			"description" : "poo poo",
-			"classes":["test"]
+			"classes":["test"],
+			"id":3
 		},
 		{
 			"course" : "WEBWES01",
@@ -243,7 +247,8 @@
 			"type" : "exam",
 			"time" : 16094555909,
 			"description" : "poo poo",
-			"classes":["test"]
+			"classes":["test"],
+			"id":4
 		},
 		{
 			"course" : "WEBWES01",
@@ -251,7 +256,8 @@
 			"type" : "assignment",
 			"time" : 16094555909,
 			"description" : "poo poo",
-			"classes":["test2"]
+			"classes":["test2"],
+			"id":5
 		}
 	],		
 	"users" : [
