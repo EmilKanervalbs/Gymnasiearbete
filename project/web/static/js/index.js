@@ -56,40 +56,26 @@ document.getElementById("news").addEventListener("click", async (e) => { // ifal
     }
 });
 
-document.getElementById("assignments").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
+var handleAssignmentClick = async (e) => {
 	console.log(e.target);
     if (e.target.nodeName == "ASSIGNMENT-ELEMENT"){
-		let assignment = await getAssignmentById(e.target.getAttribute("id"));
-		console.log("xasdasdsadsad" + assignment)
+		let assignment = await getAssignmentById(e.target.getAttribute("id"))
         const POPUP = document.getElementById("popup");
 		let target = e.target;
 		
-		// sätter texten i den som den ska
         POPUP.querySelector("h2").innerText = target.getAttribute("name");
         POPUP.querySelector("h3").innerText = target.getAttribute("course");
-        POPUP.querySelector("p").innerText = target.getAttribute("type");
+        POPUP.querySelector("p").innerText = assignment.description;
         
 		POPUP.querySelector("h4").innerText = target.getAttribute("due")
 
         popup.open(POPUP);
     }
-});
+}
 
-document.getElementById("exams").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
-	console.log(e.target);
-    if (e.target.nodeName == "ASSIGNMENT-ELEMENT"){
-        const POPUP = document.getElementById("popup");
-		let target = e.target;
-		
-        POPUP.querySelector("h2").innerText = target.getAttribute("name");
-        POPUP.querySelector("h3").innerText = target.getAttribute("course");
-        POPUP.querySelector("p").innerText = target.getAttribute("type");
-        
-		POPUP.querySelector("h4").innerText = target.getAttribute("due")
+document.getElementById("assignments").addEventListener("click", handleAssignmentClick);
+document.getElementById("exams").addEventListener("click", handleAssignmentClick);
 
-		popup.open(POPUP);
-    }
-});
 
 document.getElementById("popup").addEventListener("click", e => { // ifall man clickar på bakgrunden till den
     if (e.target.id == "popup") {

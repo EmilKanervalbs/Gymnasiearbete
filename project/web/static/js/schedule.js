@@ -61,41 +61,31 @@ export class Schedule extends HTMLElement {
 export var getSchedule = async () => {
 	const scheduleRoots = document.getElementsByClassName("scheduleHolder");
 
-    console.log("requesting assignments"); 
+    console.log("Requesting Schedule"); 
     let schedule = await fetch("/getschedule") // GET request från servern för att få ett objekt med hela användarens schema
         .then((resp) => {
-            console.log("response recieved");
+            console.log("Schedule recieved");
 
             return resp.json();
-    })
-        .then((data) => {
-            return data;
-	});
+    });
 
-	// console.log(schedule);
 
 	let fullSchedule = [];
 
 	let currentDay = new Date(); 
-	// let currentDay = new Date(1611039600000); 
-	// console.log(currentDay.getDay());
 
 	let currentTime = currentDay.getHours() * 60 + currentDay.getMinutes(); // nuvarande tid i minuter från midnatt
 
 	// console.log(currentTime);
 
-	let weekday = currentDay.getDay() - 1; // JS Date klassen har söndag = 0 och lördag = 7, gör om till måndag = 0 och söndag = 7
-	while (weekday < 0) weekday += 7;
-
+	let weekday = (currentDay.getDay() + 6) % 7; // JS Date klassen har söndag = 0 och lördag = 7, gör om till måndag = 0 och söndag = 6
+	
+	// normaliserar så att weekday alltid är mindre än 7, och ifall det är söndag blir det -1 och därav +7 ger 6
+	// mod 7 så ifall lördag, (6 + 6) % 7 = 12 % 7 = 5
+	 
 	let	trueWeekday = weekday;
 
-	if (weekday > 4) { // klipper av lördag och söndag
-		weekday = 0
-	}
-
-	// weekday = 2;
-	// console.log("weekday: " + weekday);
-	// console.log(schedule["normal"][weekday]);
+	weekday = weekday > 4 ? weekday : 0; // shorthand för att göra om weekday till range 0-4
 
 	if ((currentDay.getDay() + 6) % 7 < 5) { // kör bara om det är måndag-fredag
 		for (let i = 0; i < schedule["normal"][weekday].length; i++) { //kollar alla dagens lektioner och tar bort de som har slutat
@@ -125,19 +115,15 @@ export var getSchedule = async () => {
 
 			let x = schedule["normal"][weekday][earliestIndex]
 			x.weekday = weekday;
-			console.log(schedule["normal"][weekday].splice(earliestIndex, 1)); // tar bort den tidigaste lektionen
+			schedule["normal"][weekday].splice(earliestIndex, 1); // tar bort den tidigaste lektionen
 			fullSchedule.push(x); // sätter den tidigaste lektionen
 		}
-
-		schedule["normal"][weekday].forEach(x => {
-			
-		});
 
 		weekday = ++weekday % 5; // ++ före istället för efter då ++weekday % 5 är lika med (weekday + 1) % 5
 								// istället för weekday++ % 5 som är lika med weekday % 5
 	}	
 
-	console.log(fullSchedule);
+	// console.log(fullSchedule);
 	for (let i = 0; i < fullSchedule.length && i < 6; i++) { // for-loopen som visar upp schemat
 		let lesson = fullSchedule[i]
 
@@ -152,8 +138,7 @@ export var getSchedule = async () => {
 			let weekdayArr = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
 
 			el.setAttribute("displayDay", weekdayArr[lesson.weekday]);
-			console.log("hmm yes hello " + lesson.weekday + " " + fullSchedule[0].weekday)
-			console.log()
+			// console.log("hmm yes hello " + lesson.weekday + " " + fullSchedule[0].weekday)
 		}
 		else {
 			el.setAttribute("displayDay", "");

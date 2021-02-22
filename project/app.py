@@ -1,4 +1,7 @@
-from flask import Flask, render_template, redirect, make_response, request
+from flask import Flask, render_template, redirect, make_response, request, send_file
+
+import mimetypes
+mimetypes.add_type("text/javascript", ".js")
 
 import json, time, datetime
 

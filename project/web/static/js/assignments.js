@@ -1,10 +1,10 @@
 import {client} from "./utils.js"
 
 export var getAssignments = async () => {
-    console.log("requesting assignments");
+    console.log("Requesting Assignments");
     let assignments = await fetch("/getassignments")
         .then((resp) => {
-            console.log("response recieved");
+            console.log("Assignments recieved");
 
             return resp.json();
     })
@@ -12,7 +12,7 @@ export var getAssignments = async () => {
             return news;
 	});
 	
-	console.log(assignments);
+	// console.log(assignments);
 
 
 	assignments.assignments.forEach((x) => {
@@ -62,17 +62,16 @@ export var getAssignments = async () => {
 		parentElement.append(element);
 
 
-		console.log(x);
+		// console.log(x);
 	});
 
 	window.customElements.define("assignment-element", Assignment)
 };
 
 export var getAssignmentById = async (id) => {
-	assignment = await fetch("./getassignments/" + id).then(r => {
-		return r.json(); // härärärä äär ärää är ärärärärärärärärärärärärärärärärärärärä
+	return await fetch("/getassignments/" + id).then(r => {
+		return r.json();
 	})
-	return assignment;
 }
 
 class Assignment extends HTMLElement {

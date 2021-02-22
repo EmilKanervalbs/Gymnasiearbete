@@ -1,15 +1,11 @@
 export var getUser = async () => { // dels tar den user och dels tar den resultaten
+	console.log("Requesting User");
     let user = await fetch("/getuser")
         .then((resp) => {
-            console.log("response recieved");
-            console.log(resp);
+            console.log("User recieved");
 
             return resp.json();
-	})
-        .then((data) => {
-            console.log(data);
-            return data;
-    });
+	});
     // console.log(x);
 	// return x;
 	const assignmentUL = document.getElementById("navbar-assignments").querySelector("ul");
@@ -28,8 +24,8 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 	});
 
 	user.results.forEach((result) => {
-		console.log(new Date().getTime());
-		console.log((result.time + 2678400) * 1000);
+		// console.log(new Date().getTime());
+		// console.log((result.time + 2678400) * 1000);
 
 		// HÄÄÄÄÄÄÄÄÄR fixa att den inte visar för gamla resultat
 		if (new Date().getTime() > (result.time + 2678400) * 1000) {
@@ -49,7 +45,7 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 		resultsDIV.append(el);
 	});
 
-	console.log(user.results);
+	// console.log(user.results);
 
 	window.customElements.define("results-element", Results);
 }

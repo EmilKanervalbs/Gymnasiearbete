@@ -53,17 +53,12 @@ class News extends HTMLElement {
 
 
 export var getNews = async () => {
-    console.log("requesting news");
+    console.log("Requesting News");
     let x = await fetch("/getnews/")
         .then((resp) => {
-            console.log("response recieved");
-            // console.log(resp);
+            console.log("News recieved");
 
             return resp.json();
-    })
-        .then((news) => {
-            // console.log(news);
-            return news
     });
 
     // const newsElement = document.getElementById("news").querySelector("tbody");

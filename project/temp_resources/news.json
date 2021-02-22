@@ -262,9 +262,9 @@
 	],		
 	"users" : [
 		{
-			"name":"BajsMannen",
-			"firstName":"Bajs",
-			"lastName":"Mannen",
+			"name":"AndersAndersson",
+			"firstName":"Anders",
+			"lastName":"Andersson",
 			"group":["test"],
 			"lessons":[],
 			"results" : [
