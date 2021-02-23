@@ -206,7 +206,7 @@ def getschedule():
 @app.route("/getresults/<int:resultsID>")
 def getresults(resultsID=None):
 	print(resultsID)
-	if resultsID == None:
+	if not resultsID == None:
 		if user := server.getCachedUser(request):
 			print(user["results"])
 			for result in user["results"]:

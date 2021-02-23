@@ -29,7 +29,6 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 		// console.log(new Date().getTime());
 		// console.log((result.time + 2678400) * 1000);
 
-		// HÄÄÄÄÄÄÄÄÄR fixa att den inte visar för gamla resultat
 		if (new Date().getTime() > (result.time + 2678400) * 1000) {
 			return;
 		}
@@ -63,7 +62,7 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 }
 
 var getResultByID = async (id) => {
-	return await fetch("/getesults/" + id).then((resp) => {
+	return await fetch("/getresults/" + id).then((resp) => {
 		return resp.json();
 	});
 }
