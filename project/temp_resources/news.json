@@ -16,7 +16,7 @@
             "classes":["test"],
             "category":"",
             "startDate":0,
-            "endDate":0,
+            "endDate":16076819400,
             "sender":"rektor",
             "newsid":1
         },
@@ -274,7 +274,8 @@
 					"type" : "assignment",
 					"time" : 1612051200,
 					"comment" : "poo poo",
-					"grade" : "F"
+					"grade" : "F",
+					"id" : 0
 				}
 			]
 		}

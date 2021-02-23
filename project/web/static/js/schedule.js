@@ -85,14 +85,14 @@ export var getSchedule = async () => {
 	 
 	let	trueWeekday = weekday;
 
-	weekday = weekday > 4 ? weekday : 0; // shorthand för att göra om weekday till range 0-4
+	weekday = weekday > 4 ? 0 : weekday; // shorthand för att göra om weekday till range 0-4 if weekday > 4 then weekday else 0
 
 	if ((currentDay.getDay() + 6) % 7 < 5) { // kör bara om det är måndag-fredag
 		for (let i = 0; i < schedule["normal"][weekday].length; i++) { //kollar alla dagens lektioner och tar bort de som har slutat
 			let lesson = schedule["normal"][weekday][i];
 	
-			if (currentTime > lesson.endTime) { // ifall lektionen har slutat
-				schedule["normal"][weekday].splice(i, 1); // ta bort
+			if (currentTime > lesson.endTime) {
+				schedule["normal"][weekday].splice(i, 1); // ta bort lektionen ifall den har slutat
 				i--; // minska i för att motverka att längden har minskat med 1
 			}
 		}
