@@ -86,7 +86,7 @@ def assignments():
 # content managaging saker
 
 @app.route("/getnews/")
-@app.route("/getnews/<newsID>")
+@app.route("/getnews/<int:newsID>")
 def getnews(newsID=None):
 
 	if user := server.getCachedUser(request):
@@ -94,7 +94,7 @@ def getnews(newsID=None):
 		group = user["group"]
 		currentTime = time.time()
 
-		if not newsID:
+		if newsID == None:
 			newsDelivery = {"news":[]}
 
 			for news in server.content["news"]:
@@ -120,7 +120,6 @@ def getnews(newsID=None):
 
 			return newsDelivery
 		else:
-			newsID = int(newsID)
 			print("news requested by ID")
 			for news in server.content["news"]:
 				if news["newsid"] == newsID:
@@ -143,18 +142,18 @@ def getuser():
 	return "", 403
 
 @app.route("/getassignments/")
-@app.route("/getassignments/<assignmentID>")
+@app.route("/getassignments/<int:assignmentID>")
 def getassignments(assignmentID=None):
 	print("requested assignments")
 	if user := server.getCachedUser(request):
 		print(assignmentID)
-		if assignmentID:
-			assignmentID = int(assignmentID)
+		if not assignmentID == None:
 			print("assignment requiested by id")
 			for assignment in server.content["assignments"]:
 				if assignment["id"] == assignmentID:
 					return assignment
-		else:
+		else: 
+			# leta reda på alla uppgifter
 			assignments = []
 
 			currentTime = time.time()
@@ -204,12 +203,21 @@ def getschedule():
 
 	return "", 403
 			
-# @app.route("/getresults")
-# def getresults():
-# 	if user := server.getCachedUser(request):
-# 		return user["results"]
-	
-# 	# return "", 403
+@app.route("/getresults/<int:resultsID>")
+def getresults(resultsID=None):
+	print(resultsID)
+	if resultsID == None:
+		if user := server.getCachedUser(request):
+			print(user["results"])
+			for result in user["results"]:
+				print(result)
+				print(type(resultsID))
+				if result["id"] == resultsID:
+					return result
+
+		else:
+			return "", 403 # forbidden, inte inloggad
+	return "hejsan", 400 # Bad request, inget id eller inte hittade
 	
 
 
@@ -226,4 +234,5 @@ def update():
 
 @app.errorhandler(404)
 def not_found(e):
-	return "idiota"
+	# return e
+	return "idiota"	

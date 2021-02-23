@@ -1,3 +1,5 @@
+import {popup} from "./popup.js"
+
 export var getUser = async () => { // dels tar den user och dels tar den resultaten
 	console.log("Requesting User");
     let user = await fetch("/getuser")
@@ -32,15 +34,25 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 			return;
 		}
 
-
 		let el = document.createElement("results-element"); // name, course, type, due
 		el.setAttribute("name", result.name);
 		el.setAttribute("course", result.course);
 		el.setAttribute("type", result.type);
+		el.setAttribute("id", result.id);
 
 		let date = new Date(result.time * 1000);
 		let dueDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 		el.setAttribute("due", dueDate);
+
+		el.addEventListener("click", async e => {
+			let result = await getResultByID(e.target.getAttribute("id"))
+			let POPUP = document.getElementById("popup");
+			POPUP.querySelector("h2").innerText = result.name;
+        	POPUP.querySelector("h3").innerText = result.course;
+			POPUP.querySelector("p").innerText = result.comment;
+			
+			popup.open(POPUP);
+		});
 
 		resultsDIV.append(el);
 	});
@@ -50,6 +62,11 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 	window.customElements.define("results-element", Results);
 }
 
+var getResultByID = async (id) => {
+	return await fetch("/getesults/" + id).then((resp) => {
+		return resp.json();
+	});
+}
 
 class Results extends HTMLElement {
 	constructor() {
