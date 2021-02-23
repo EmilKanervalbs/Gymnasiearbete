@@ -672,21 +672,41 @@ div.popup-background {
                 // grid-template-columns: 1fr 1fr;
                 // div h3, div h4 {
                 //     text-align: right;
-                // }
-            }
-            h2 {
-                font-weight: bold;
-                padding-bottom: 5px;
-                font-size: 2rem;
+				// }
+				h2 {
+					font-weight: bold;
+					padding-bottom: 5px;
+					font-size: 2rem;
+				}
+				
 			}
-			h3, h4 {
-				font-size: 0.8rem;
+			.subtitle-row {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				.publish-info {
+					
+					h3, h4 {
+						font-size: 0.8rem;
+					}
+				}
+
+				.grade-area {
+					text-align: right;
+					h3 {
+						font-size: 1.25rem
+					}
+				}
+
 			}
 
+			
             p {
 				margin-top: 0.5rem;
                 font-size: 1rem;
-            }
+			}
+			h3 {
+				margin-top: 0.5rem;
+			}
         }
     }
 

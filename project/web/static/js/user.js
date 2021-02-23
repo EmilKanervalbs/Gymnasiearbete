@@ -49,8 +49,9 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 			POPUP.querySelector("h2").innerText = result.name;
         	POPUP.querySelector("h3").innerText = result.course;
 			POPUP.querySelector("p").innerText = result.comment;
+			document.getElementById("popup-result-row").innerText = `Resultat: ${result.grade}`;
 			
-			popup.open(POPUP);
+			popup.open(POPUP, "result");
 		});
 
 		resultsDIV.append(el);

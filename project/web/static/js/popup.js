@@ -1,4 +1,7 @@
-var open = (el) => {
+var open = (el, reason) => {
+	if (typeof(reason) == "undefined") {
+		document.getElementById("popup-result-row").innerText = "";
+	}
 	el.classList.add("animate-in");
 	el.classList.add("visible");
 	setTimeout(() => {

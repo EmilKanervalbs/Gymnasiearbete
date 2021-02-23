@@ -695,19 +695,38 @@ div.popup-background.visible div.popup-overlay .title-row {
   text-align: center;
 }
 
-div.popup-background.visible div.popup-overlay h2 {
+div.popup-background.visible div.popup-overlay .title-row h2 {
   font-weight: bold;
   padding-bottom: 5px;
   font-size: 2rem;
 }
 
-div.popup-background.visible div.popup-overlay h3, div.popup-background.visible div.popup-overlay h4 {
+div.popup-background.visible div.popup-overlay .subtitle-row {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+div.popup-background.visible div.popup-overlay .subtitle-row .publish-info h3, div.popup-background.visible div.popup-overlay .subtitle-row .publish-info h4 {
   font-size: 0.8rem;
+}
+
+div.popup-background.visible div.popup-overlay .subtitle-row .grade-area {
+  text-align: right;
+}
+
+div.popup-background.visible div.popup-overlay .subtitle-row .grade-area h3 {
+  font-size: 1.25rem;
 }
 
 div.popup-background.visible div.popup-overlay p {
   margin-top: 0.5rem;
   font-size: 1rem;
+}
+
+div.popup-background.visible div.popup-overlay h3 {
+  margin-top: 0.5rem;
 }
 
 div.popup-background.animate-in {
