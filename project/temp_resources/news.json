@@ -1,8 +1,8 @@
 {	
     "news":[
 		{
-            "title":"test",
-            "content":"jodå det är ju ett test för att se om man kan läsa in json liksom cool dsj sj jskjd jksdkj sjkd kjsd jkskjd",
+            "title":"Exempelnyhet",
+            "content":"Det här är en nyhet. Den kanske inte skulle se ut så här vanligtvis men nu gör den det.",
             "classes":["test"],
             "category":"",
             "startDate":1607681880,
@@ -11,8 +11,8 @@
             "newsid":0
         },
         {
-            "title":"test",
-            "content":"uh oh stinky poop",
+            "title":"Exempelnyhet",
+            "content":"Det här är ett exempel på hur en nyhet ser ut. Den ger information till eleverna.",
             "classes":["test"],
             "category":"",
             "startDate":0,
@@ -21,26 +21,15 @@
             "newsid":1
         },
         {
-            "title":"ska inte finnas",
-            "content":"bajs bajs bajs bajsmannen suger",
+            "title":"Exempelnyhet",
+            "content":"Det här är ett exempel på hur en nyhet ser ut, det finns flera nyheter och alla har möjlighet att visa olika saker.",
             "classes":["test2"],
             "category":"",
             "startDate":0,
             "endDate":16076819400,
             "sender":"rektor",
             "newsid":2
-		},{
-            "title":"ska inte finnas",
-			"classes":["test2"],
-			"content" : "yoooo \n test test \n \n \n test",
-            "category":"",
-            "startDate":0,
-            "endDate":16076819400,
-            "sender":"rektor",
-            "newsid":3
 		}
-		
-
 		
 	],
 	"groups" : {
@@ -48,7 +37,7 @@
 			"courses" : ["WEBWES01", "SVESVE03", "MATMAT04", "MATMAT05"]
 		},
 		"test2" : {
-			"courses" : []
+			"courses" : ["IDRIDR01"]
 		}
 	},
 	"courses" : {
@@ -95,6 +84,10 @@
 		"RELREL01" : {
 			"code" : "RELREL01",
 			"displayName" : "Religion 1"
+		},
+		"FYSFYS02" : {
+			"code" : "FYSFYS02",
+			"displayName" : "Fysik 2"
 		}
 	},
 	"schedule": {
@@ -106,14 +99,16 @@
 						"startTime" : 600,
 						"endTime" : 660,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 14 Litet",
+						"id":0
 					},
 					{
 						"course":"WEBWES01",
 						"startTime" : 700,
 						"endTime" : 760,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 14 Litet",
+						"id":1
 					}
 				],
 				[	
@@ -122,28 +117,32 @@
 						"startTime" : 600,
 						"endTime" : 760,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 16",
+						"id":2
 					},
 					{
 						"course":"MATMAT05",
 						"startTime" : 600,
 						"endTime" : 760,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 16",
+						"id":3
 					},
 					{
 						"course":"GYARTE",
 						"startTime" : 765,
 						"endTime" : 870,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 4",
+						"id":4
 					},
 					{
 						"course" : "KEMKEM01",
 						"startTime" : 880,
 						"endTime" : 990,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 14 Litet",
+						"id":5
 					}
 				],
 				[],
@@ -154,21 +153,24 @@
 						"startTime" : 605,
 						"endTime" : 685,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 2",
+						"id":6
 					},
 					{
 						"course" : "WEBWES01",
 						"startTime" : 740,
 						"endTime" : 815,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 14 Litet",
+						"id":7
 					},
 					{
 						"course" : "KEMKEM01",
 						"startTime" : 825,
 						"endTime" : 885,
 						"exceptForDays" : [],
-						"room" : "Sal 14 Litet"
+						"room" : "Sal 14 Litet",
+						"id":8
 					}
 				]
 
@@ -189,7 +191,8 @@
 					"startTime" : 500,
 					"endTime" : 550,
 					"exceptForDays" : [],
-					"room" : "Sal 14 Litet"
+					"room" : "Sal 14 Litet",
+					"id":0
 				}
 				],
 				[
@@ -207,54 +210,54 @@
 	"assignments" : [
 		{
 			"course" : "WEBWES01",
-			"name" : "aa",
+			"name" : "Exempeluppgift",
 			"type" : "assignment",
-			"time" : 16083072000,
-			"description" : "poo poo",
+			"time" : 1616169600,
+			"description" : "Gör en webbsida som låter dig logga in.",
 			"classes":["test"],
 			"id":0
 		},
 		{
-			"course" : "WEBWES01",
-			"name" : "bb",
+			"course" : "SVESVE03",
+			"name" : "Exempeluppgift",
 			"type" : "verbal",
-			"time" : 16083072000,
+			"time" : 1616601600,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":1
 		},
 		{
-			"course" : "WEBWES01",
-			"name" : "cc",
+			"course" : "RELREL01",
+			"name" : "Exempeluppgift",
 			"type" : "exam",
-			"time" : 16083072000,
+			"time" : 1616576400,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":2
 		},
 		{
-			"course" : "WEBWES01",
-			"name" : "dd",
+			"course" : "FYSFYS02",
+			"name" : "Exempeluppgift",
 			"type" : "exam",
-			"time" : 16094555099,
+			"time" : 1617868800,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":3
 		},
 		{
-			"course" : "WEBWES01",
-			"name" : "ee",
+			"course" : "KEMKEM01",
+			"name" : "Exempeluppgift",
 			"type" : "exam",
-			"time" : 16094555909,
+			"time" : 1620736800,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":4
 		},
 		{
-			"course" : "WEBWES01",
-			"name" : "ff",
+			"course" : "IDRIDR01",
+			"name" : "Exempeluppgift",
 			"type" : "assignment",
-			"time" : 16094555909,
+			"time" : 1615902000,
 			"description" : "poo poo",
 			"classes":["test2"],
 			"id":5
@@ -265,14 +268,14 @@
 			"name":"AndersAndersson",
 			"firstName":"Anders",
 			"lastName":"Andersson",
-			"group":["test"],
+			"group":["test", "test2"],
 			"lessons":[],
 			"results" : [
 				{
 					"course" : "WEBWES01",
-					"name" : "gg",
+					"name" : "Resultatexempel",
 					"type" : "assignment",
-					"time" : 1612051200,
+					"time" : 1622051200,
 					"comment" : "poo poo",
 					"grade" : "F",
 					"id" : 0

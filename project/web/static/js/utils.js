@@ -10,9 +10,14 @@ var getWeekday = (x) => {
 	return y[x.getDay()];
 }
 
+var calculateTime = (minuteTime) => {
+	return `${Math.floor(minuteTime / 60)}.${client.lengthen(minuteTime % 60)}`;
+} 
+
 const client = {
 	lengthen,
-	getWeekday
+	getWeekday,
+	calculateTime
 }
 
 export {client}

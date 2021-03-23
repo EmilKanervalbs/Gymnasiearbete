@@ -7,15 +7,25 @@ export var getAssignments = async () => {
             console.log("Assignments recieved");
 
             return resp.json();
-    })
-        .then((news) => {
-            return news;
-	});
+    }).then(data => {
+		return data.assignments;
+	})
 	
-	// console.log(assignments);
+	let newAssignments = [];
+	for (let i = 0; i < assignments.length;) { // kör tills array är 0 length 
+		let lowestTime = Number.MAX_SAFE_INTEGER;
+		let lowestIndex = 0;
+		for (let j = 0; j < assignments.length; j++) {
+			if (assignments[j].time < lowestTime) {
+				lowestTime = assignments[j].time;
+				lowestIndex = j;
+			}
+		}
+		assignments.splice(lowestIndex, 1).forEach(x => newAssignments.push(x));
+	}
 
 
-	assignments.assignments.forEach((x) => {
+	newAssignments.forEach((x) => {
 		let element = document.createElement("assignment-element");
 		
 		let date = new Date(x.time * 1000);
@@ -32,8 +42,6 @@ export var getAssignments = async () => {
 
 		let parentElement;
 
-		// console.log(weekendDate);
-		// console.log(date);
 
 		switch(x.type) {
 			case "exam":

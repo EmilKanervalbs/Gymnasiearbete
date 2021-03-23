@@ -1,4 +1,5 @@
 import {client} from "./utils.js"
+import {popup} from "./popup.js"
 
 export class Schedule extends HTMLElement {
 	constructor() {
@@ -133,6 +134,7 @@ export var getSchedule = async () => {
 		el.setAttribute("end", lesson.endTime);
 		el.setAttribute("room", lesson.room);
 		el.setAttribute("weekday", lesson.weekday);
+		el.setAttribute("id", lesson.id);
 
 		if (lesson.weekday != fullSchedule[0].weekday || lesson.weekday != trueWeekday) {
 			let weekdayArr = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
@@ -143,6 +145,19 @@ export var getSchedule = async () => {
 		else {
 			el.setAttribute("displayDay", "");
 		}
+
+		el.addEventListener("click", async (e) => {
+			let el = e.target;
+			let schedule = await getScheduleById(el.getAttribute("id"));
+			let POPUP = document.getElementById("popup");
+
+        	POPUP.querySelector("h2").innerText = el.getAttribute("course");
+        	POPUP.querySelector("h3").innerText = "";
+        	POPUP.querySelector("h4").innerText = "";
+        	POPUP.querySelector("p").innerText = client.calculateTime(schedule.startTime) + "-" + client.calculateTime(schedule.endTime) + "\n" + schedule.room;
+
+			popup.open(POPUP);
+		});
 
 		// bestämmer om lektionen hamnar i "nästa/nuvarande lektion" eller "kommande lektioner"
 		// ifall det är den första lektionen hamnar den alltid i "nästa"
@@ -157,6 +172,8 @@ export var getSchedule = async () => {
 		}
 
 		scheduleRoots[1].appendChild(el); // lägg till lektionen i "kommande lektioner"-sektionen
+
+		
 	}
 
 	scheduleRoots[0].childNodes.forEach((el) => {
@@ -178,4 +195,10 @@ export var getSchedule = async () => {
 	});
 	
 	window.customElements.define("schedule-element", Schedule);
+}
+
+var getScheduleById = async (id) => {
+	return await fetch("/getschedule/" + id).then(r => {
+		return r.json();
+	});
 }

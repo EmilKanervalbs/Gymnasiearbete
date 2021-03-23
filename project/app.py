@@ -146,7 +146,6 @@ def getuser():
 def getassignments(assignmentID=None):
 	print("requested assignments")
 	if user := server.getCachedUser(request):
-		print(assignmentID)
 		if not assignmentID == None:
 			print("assignment requiested by id")
 			for assignment in server.content["assignments"]:
@@ -182,36 +181,45 @@ def getassignments(assignmentID=None):
 
 
 @app.route("/getschedule/")
-def getschedule():
+@app.route("/getschedule/<string:scheduleID>")
+def getschedule(scheduleID = None):
 	if user := server.getCachedUser(request):
+		if scheduleID == None:
+			lessons = {"normal" : [[], [], [], [], []], "exceptions" : []} # Mall där alla unika scheman slås ihop till
 
-		lessons = {"normal" : [[], [], [], [], []], "exceptions" : []} # Mall där alla unika scheman slås ihop till
+			for group in user["group"]:
+				lessonsCopy = deepcopy(server.content["schedule"][group])
+				for day in lessonsCopy["normal"]:
+					for lesson in day:
+						lesson["id"] =  group + ":" + str(lesson["id"])
+				for i in range(5): # lägger ihop alla scheman dag för dag, i = dag, grupp = unikt schema
+					lessons["normal"][i] += lessonsCopy["normal"][i]
 
-		for group in user["group"]:
-			for i in range(5): # lägger ihop alla scheman dag för dag, i = dag, grupp = unikt schema
-				lessons["normal"][i] += server.content["schedule"][group]["normal"][i]
+			lessonsCopy = deepcopy(lessons) # kopia för att ändra namnen på kurserna
 
-		lessonsCopy = deepcopy(lessons) # kopia för att ändra namnen på kurserna
-
-		for day in lessonsCopy["normal"]:
-			for lesson in day:
-				try: # Säkerhet ifall det skulle råka vara så att den inte hittar namnet på kursen
-					lesson["course"] = server.content["courses"][lesson["course"]]["displayName"]
-				except KeyError:
-					print("KEYERROR ON LESSON")
-		return lessonsCopy
-
+			for day in lessonsCopy["normal"]:
+				for lesson in day:
+					try: # Säkerhet ifall det skulle råka vara så att den inte hittar namnet på kursen
+						lesson["course"] = server.content["courses"][lesson["course"]]["displayName"]
+					except KeyError:
+						print("KEYERROR ON LESSON")
+			return lessonsCopy
+		else:
+			scheduleID = scheduleID.split(":")
+			group = scheduleID[0]
+			ID = int(scheduleID[1])
+			for day in server.content["schedule"][group]["normal"]:
+				for lesson in day:
+					if lesson["id"] == ID:
+						return lesson
 	return "", 403
 			
 @app.route("/getresults/<int:resultsID>")
 def getresults(resultsID=None):
-	print(resultsID)
 	if not resultsID == None:
 		if user := server.getCachedUser(request):
 			print(user["results"])
 			for result in user["results"]:
-				print(result)
-				print(type(resultsID))
 				if result["id"] == resultsID:
 					return result
 
