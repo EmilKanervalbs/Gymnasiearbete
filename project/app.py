@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, make_response, request, send_file
+from flask import Flask, redirect, make_response, request
 
 import mimetypes
 mimetypes.add_type("text/javascript", ".js")
@@ -15,7 +15,7 @@ class Server():
 
 		self.users = self.content["users"]
 
-		self.userSessions = {"helo_wrold": self.users[0]}
+		self.userSessions = {}
 
 	
 	def update(self):
@@ -43,15 +43,14 @@ server = Server()
 @app.route("/")
 def index():
     resp = make_response(redirect("/startpage")) # skapa en redirect
-    resp.set_cookie("session", "helo_wrold") # skapa en session cookie, låtsas som att man loggar in
-    server.userSessions["helo_wrold"] = server.users[0]
+    resp.set_cookie("session", "TestCookie") # skapa en session cookie, låtsas som att man loggar in
+    server.userSessions["TestCookie"] = server.users[0]
     return resp
 
 @app.route("/startpage/")
 def startpage():
-	if user := server.getCachedUser(request):
-
-	    return render_template("startsida.html", user=user) # skicka tillbaka användaren
+	if server.getCachedUser(request): # kollar ifall personen finns i denna dära grejen
+		return app.send_static_file("html/startsida.html") # skicka startsidan
 	
 	return "", 403
 
@@ -240,7 +239,7 @@ def update():
 
 	return "", 403
 
-@app.errorhandler(404)
-def not_found(e):
-	# return e
-	return "idiota"	
+# @app.errorhandler(404)
+# def not_found(e):
+# 	# return e
+# 	return "idiota"	
