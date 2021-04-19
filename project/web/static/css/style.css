@@ -693,12 +693,25 @@ div.popup-background.visible div.popup-overlay {
 
 div.popup-background.visible div.popup-overlay .title-row {
   text-align: center;
+  position: relative;
 }
 
 div.popup-background.visible div.popup-overlay .title-row h2 {
   font-weight: bold;
   padding-bottom: 5px;
   font-size: 2rem;
+}
+
+div.popup-background.visible div.popup-overlay .title-row .popupCloseButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-image: url("../img/RedCoss.png");
+  height: 64px;
+  width: 64px;
+  background-size: 100%;
+  z-index: 10000000000;
+  cursor: pointer;
 }
 
 div.popup-background.visible div.popup-overlay .subtitle-row {

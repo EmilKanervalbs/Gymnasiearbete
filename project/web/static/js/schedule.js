@@ -40,7 +40,8 @@ export class Schedule extends HTMLElement {
 		ROOM_NAME.innerText = room;
 
 		var TIME = document.createElement("div");
-		TIME.innerText = `${Math.floor(start / 60)}.${client.lengthen(start % 60)}-${Math.floor(end / 60)}.${client.lengthen(end % 60)}`;
+		// TIME.innerText = `${Math.floor(start / 60)}.${client.lengthen(start % 60)}-${Math.floor(end / 60)}.${client.lengthen(end % 60)}`;
+		TIME.innerText = `${client.generateReadableTime(start)}-${client.generateReadableTime(end)}`;
 
 		if (displayDay != "") {
 			TIME.innerText = displayDay + " " + TIME.innerText;

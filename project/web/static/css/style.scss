@@ -59,12 +59,12 @@ body {
 			display: inline;
             background-color: $navbar-color;
             padding: 1.5em 0;
-            height: 3rem;
+            // height: 3rem;
 
-            float: left;
+            // float: left;
 
 
-            height: 1em;
+            // height: 1em;
             &:hover {
                 background-color: darken($navbar-color, $darken-amount);
 				
@@ -673,13 +673,30 @@ div.popup-background {
                 // div h3, div h4 {
                 //     text-align: right;
 				// }
+				position: relative;
 				h2 {
 					font-weight: bold;
 					padding-bottom: 5px;
 					font-size: 2rem;
 				}
 				
+				.popupCloseButton {
+					position: absolute;
+					right: 0;
+					top: 0;
+					// background-color: blue;
+
+					background-image: url("../img/RedCoss.png");
+					height: 64px;
+					width: 64px;
+					background-size: 100%;
+					// display: block;
+					z-index: 10000000000;
+					cursor: pointer;
+				}
 			}
+			
+
 			.subtitle-row {
 				display: grid;
 				grid-template-columns: 1fr 1fr;

@@ -1,20 +1,17 @@
-import {getSchedule} from "./schedule.js"
-import {Plan, openPlanCreator, createPlan, deletePlan} from "./plan.js"
-import {getNews, getNewsByID} from "./news.js"
+import {getSchedule} from "./schedule.js";
+import {Plan, openPlanCreator, createPlan, deletePlan} from "./plan.js";
+import {getNews, getNewsByID} from "./news.js";
 import {getUser} from "./user.js";
-import {getAssignments, getAssignmentById} from "./assignments.js"
-import {popup} from "./popup.js"
+import {getAssignments, getAssignmentById} from "./assignments.js";
+import {popup} from "./popup.js";
+import {client} from "./utils.js";
 
 var TIME = document.getElementById("time");
-
-var lengthen = (x) => {
-    return x < 10 ? "0" + x : x;
-};
 
 var updateTime = () => {
     let time = new Date;
     
-    TIME.innerText = lengthen(time.getHours()) + ":" + lengthen(time.getMinutes()) + ":" + lengthen(time.getSeconds());
+    TIME.innerText = client.lengthen(time.getHours()) + ":" + client.lengthen(time.getMinutes()) + ":" + client.lengthen(time.getSeconds());
 }
 
 let currentTime = new Date;
@@ -50,7 +47,7 @@ document.getElementById("news").addEventListener("click", async (e) => { // ifal
         POPUP.querySelector("p").innerText = news.content;
         
         let date = new Date(news.startDate * 1000);
-        POPUP.querySelector("h4").innerText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${lengthen(date.getHours())}:${lengthen(date.getMinutes())}`
+        POPUP.querySelector("h4").innerText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${client.generateReadableTime(date)}`
 
 		popup.open(POPUP);
     }
@@ -83,10 +80,19 @@ document.getElementById("popup").addEventListener("click", e => { // ifall man c
     }
 });
 
+
 document.getElementById("plan-popup").addEventListener("click", e => {
     if (e.target.id == "plan-popup") {
         popup.close(e.target);
     }
+});
+
+document.getElementById("popupCloseButton").addEventListener("click", function() {
+	popup.close(document.getElementById("popup"));
+});
+
+document.getElementById("planCloseButton").addEventListener("click", function() {
+	popup.close(document.getElementById("plan-popup"));
 });
 
 document.getElementById("plan-input-submit-button").addEventListener("click", e => {

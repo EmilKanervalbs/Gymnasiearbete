@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Schoolsoft fast bra </title>
+    <title> SwagSoft </title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -38,15 +38,11 @@
             
             <li id="triangle2" class="triangle"></li>
             
-            <li id="name"> 
-                {% if user %}
-                {{ user["firstName"] + " " + user["lastName"] }}
-                {% else %}
-                yooooooooo hacker
-                {% endif %}
-                <ul class="dropbar">
+            <li id="name"><ul class="dropbar">
+
                     <a href="/profile">
                         <li>
+
                             Profil
                         </li>
                     </a>
@@ -67,7 +63,9 @@
             <div class="title-row">
                 <h2> 
                     Titel
-				</h2>
+                </h2>
+                <div id="popupCloseButton" class="popupCloseButton"></div>
+                
 			</div>
 			<div class="subtitle-row">
                 <div class="publish-info">
@@ -82,7 +80,8 @@
             
             <p>
 			</p>
-			<h3 id="popup-result-row"></h3>
+            <h3 id="popup-result-row"></h3>
+            
 
         </div>
 	</div>
@@ -90,7 +89,9 @@
 	<div class="popup-background" id="plan-popup">
 		<div class="popup-overlay plan-popup-overlay">
 			<div class="title-row">
-				<h2> Skapa planering </h2>
+                <h2> Skapa planering </h2>
+                <div id="planCloseButton" class="popupCloseButton"></div>
+                
 			</div>
 
 			<div class="plan-input-section">

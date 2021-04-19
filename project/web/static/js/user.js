@@ -10,6 +10,9 @@ export var getUser = async () => { // dels tar den user och dels tar den resulta
 	});
     // console.log(x);
 	// return x;
+
+	document.getElementById("name").innerHTML = user.firstName + " " + user.lastName + document.getElementById("name").innerHTML;
+
 	const assignmentUL = document.getElementById("navbar-assignments").querySelector("ul");
 	const resultsUL = document.getElementById("navbar-results").querySelector("ul");
 	const resultsDIV = document.getElementById("results").querySelector("div");
