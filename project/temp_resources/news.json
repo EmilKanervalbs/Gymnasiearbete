@@ -212,7 +212,7 @@
 			"course" : "WEBWES01",
 			"name" : "Exempeluppgift",
 			"type" : "assignment",
-			"time" : 1616169600,
+			"time" : 1619517600,
 			"description" : "Gör en webbsida som låter dig logga in.",
 			"classes":["test"],
 			"id":0
@@ -221,7 +221,7 @@
 			"course" : "SVESVE03",
 			"name" : "Exempeluppgift",
 			"type" : "verbal",
-			"time" : 1616601600,
+			"time" : 1620208800,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":1
@@ -230,7 +230,7 @@
 			"course" : "RELREL01",
 			"name" : "Exempeluppgift",
 			"type" : "exam",
-			"time" : 1616576400,
+			"time" : 1620036000,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":2
@@ -239,7 +239,7 @@
 			"course" : "FYSFYS02",
 			"name" : "Exempeluppgift",
 			"type" : "exam",
-			"time" : 1617868800,
+			"time" : 1620813600,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":3
@@ -248,7 +248,7 @@
 			"course" : "KEMKEM01",
 			"name" : "Exempeluppgift",
 			"type" : "exam",
-			"time" : 1620736800,
+			"time" : 1620900000,
 			"description" : "poo poo",
 			"classes":["test"],
 			"id":4
@@ -257,7 +257,7 @@
 			"course" : "IDRIDR01",
 			"name" : "Exempeluppgift",
 			"type" : "assignment",
-			"time" : 1615902000,
+			"time" : 1621591200,
 			"description" : "poo poo",
 			"classes":["test2"],
 			"id":5

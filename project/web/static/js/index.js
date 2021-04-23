@@ -35,6 +35,18 @@ getSchedule();
 
 window.customElements.define("plan-element", Plan);
 
+// stäng popup om man trycker escape
+window.addEventListener("keydown", e => {
+	if (e.key == "Escape") {
+		if (document.getElementById("popup").classList.contains("visible")) {
+			popup.close(document.getElementById("popup"))
+		}
+		if (document.getElementById("plan-popup").classList.contains("visible")) {
+			popup.close(document.getElementById("plan-popup"))
+		}
+	}
+})
+
 document.getElementById("news").addEventListener("click", async (e) => { // ifall man clickar på en nyhet
 	console.log(e.target);
     if (e.target.nodeName == "NEWS-ELEMENT"){
