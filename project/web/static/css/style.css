@@ -25,11 +25,11 @@ body {
 
 .topbar ul li {
   display: inline;
+  position: relative;
   background-color: #404141;
   padding: 1.5em 0;
-  height: 3rem;
-  float: left;
   height: 1em;
+  float: left;
   min-width: 12ch;
   text-align: center;
 }
@@ -706,12 +706,20 @@ div.popup-background.visible div.popup-overlay .title-row .popupCloseButton {
   position: absolute;
   right: 0;
   top: 0;
-  background-image: url("../img/RedCoss.png");
-  height: 64px;
-  width: 64px;
+  background-image: url("../img/WhiteCross.png");
+  background-color: transparent;
+  -webkit-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+  border-radius: 10px;
+  height: 48px;
+  width: 48px;
   background-size: 100%;
   z-index: 10000000000;
   cursor: pointer;
+}
+
+div.popup-background.visible div.popup-overlay .title-row .popupCloseButton:hover {
+  background-color: red;
 }
 
 div.popup-background.visible div.popup-overlay .subtitle-row {

@@ -57,11 +57,13 @@ body {
 
         li {
 			display: inline;
+			position: relative;
+			// top: 1.5em;
             background-color: $navbar-color;
             padding: 1.5em 0;
-            // height: 3rem;
+            height: 1em;
 
-            // float: left;
+            float: left;
 
 
             // height: 1em;
@@ -98,6 +100,7 @@ body {
 				width: 0;
 				height: 0;
                 min-width: 0;
+				// top: -1em;
             }
 
             ul.dropbar {
@@ -360,8 +363,6 @@ table.newstable {
 				border-top: none;
 				&:last-child {
 					padding-bottom: 0.2rem;
-
-					// KOLLA HÄRÄ ÄRÄÄR ÄRÄR Ä RÄR ÄR ÄR ÄR Ä RÄR ÄR ÄRÄ ÄR ÄR ÄR Ä RÄ RÄR ÄRÄ R
 				}
                 // border-bottom: 1px solid rgba(0, 0, 0, 0.5);
                 // margin-bottom: 0.2rem;
@@ -686,13 +687,20 @@ div.popup-background {
 					top: 0;
 					// background-color: blue;
 
-					background-image: url("../img/RedCoss.png");
-					height: 64px;
-					width: 64px;
+					background-image: url("../img/WhiteCross.png");
+					background-color: transparent;
+					transition: background-color 100ms linear;
+					border-radius: 10px;
+					height: 48px;
+					width: 48px;
 					background-size: 100%;
 					// display: block;
 					z-index: 10000000000;
 					cursor: pointer;
+
+					&:hover {
+						background-color: red;
+					}
 				}
 			}
 			
